@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Alleppey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #1e3a5f;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: #f4a261;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .image-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+        }
+        .text-section h1 {
+            color: #1e3a5f;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+        .text-section p {
+            text-align: justify;
+            line-height: 1.6;
+            color: #1e3a5f;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        /* Guide & Map Layout */
+        .info-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .guide-details, .map-container {
+            flex: 1;
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            min-width: 280px;
+        }
+        .guide-details h5 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .guide-details ul {
+            list-style: none;
+            padding: 0;
+        }
+        .guide-details ul li {
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+        .map-container {
+            height: 250px;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-section">
+            <h1>Welcome to Alleppey</h1>
+            <p>
+                Known as the "Venice of the East," Alleppey is a charming town in Kerala famous for its serene backwaters, lush greenery, and houseboat cruises.
+            </p>
+        </div>
+
+        <div class="image-container">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.7yD4z9pCp4StrnaviNqzwAHaEd&pid=Api&P=0&h=180" alt="Alleppey Backwaters">
+        </div>
+
+        <div class="text-section">
+            <p>
+                The region of Kuttanad, known as the rice bowl of Kerala, has been historically significant since the Sangam period. Christianity also has deep roots in the area, with St. Thomas, a disciple of Jesus, establishing churches in the first century AD.
+            </p>
+        </div>
+
+        <!-- Guide Details and Map Side by Side -->
+        <div class="info-section">
+            <div class="guide-details">
+                <h5>Local Guide Details</h5>
+                <ul>
+                    <li><strong>Name:</strong> Anish Kumar</li>
+                    <li><strong>Location:</strong> Alleppey, Kerala</li>
+                    <li><strong>Contact:</strong> 984-567-1234</li>
+                    <li><strong>Availability:</strong> 6:00 AM - 7:00 PM</li>
+                    <li><strong>Best Time to Visit:</strong> November - February</li>
+                    <li><strong>Nearby Attractions:</strong> Alappuzha Beach, Backwaters, St. Mary's Church</li>
+                </ul>
+            </div>
+
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125882.93856818436!2d76.25687426343484!3d9.501174297630314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08836f77ec66b5%3A0xa2400e469e56b6f3!2sAlappuzha%2C%20Kerala!5e0!3m2!1sen!2sin!4v1618315573185!5m2!1sen!2sin" 
+                    allowfullscreen 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
