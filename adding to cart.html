@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Booking Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .booking-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .booking {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .booking:last-child {
+            border-bottom: none;
+        }
+        .booking h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .booking p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .cancel-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .cancel-button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-container">
+        <h2>Bus Booking Details</h2>
+        <div id="bookings"></div>
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getDatabase, ref, get, remove } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCtPvC9xPRf9r_xZgrLsmy7WsgV0osLreg",
+            authDomain: "travel-india-abc9.firebaseapp.com",
+            databaseURL: "https://travel-india-abc9-default-rtdb.firebaseio.com",
+            projectId: "travel-india-abc9",
+            storageBucket: "travel-india-abc9.firebasestorage.app",
+            messagingSenderId: "349177620801",
+            appId: "1:349177620801:web:1a5ed571906c2de85399c0",
+            measurementId: "G-4P08M66C5F"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        function loadBookings() {
+            const bookingsRef = ref(database, 'bookings/');
+            get(bookingsRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const bookings = snapshot.val();
+                    const bookingsContainer = document.getElementById('bookings');
+                    bookingsContainer.innerHTML = '';
+
+                    for (let bookingId in bookings) {
+                        const booking = bookings[bookingId];
+                        const bookingElement = document.createElement('div');
+                        bookingElement.classList.add('booking');
+                        bookingElement.innerHTML = `
+                            <h3>Booking ID: ${bookingId}</h3>
+                            <p><strong>Name:</strong> ${booking.name}</p>
+                            <p><strong>Phone:</strong> ${booking.phone}</p>
+                            <p><strong>Seats:</strong> ${booking.seats}</p>
+                            <button class="cancel-button" onclick="cancelBooking('${bookingId}')">Cancel Booking</button>
+                        `;
+                        bookingsContainer.appendChild(bookingElement);
+                    }
+                } else {
+                    console.log("No bookings found");
+                }
+            }).catch((error) => {
+                console.error(error);
+            });
+        }
+
+        function cancelBooking(bookingId) {
+            const bookingRef = ref(database, 'bookings/' + bookingId);
+            remove(bookingRef).then(() => {
+                alert('Booking cancelled successfully.');
+                loadBookings();
+            }).catch((error) => {
+                console.error(error);
+                alert('Error cancelling booking.');
+            });      
+        }
+
+        // Expose functions to global scope
+        window.cancelBooking = cancelBooking;
+
+        // Load bookings from the database when the page loads
+        window.onload = loadBookings;
+    </script>
+</body>
+</html>
