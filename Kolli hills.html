@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kolli Hills</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #008000, #003300);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1100px;
+            margin: 20px;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            width: 100%;
+        }
+        .text, .image {
+            flex: 1;
+            min-width: 300px;
+        }
+        .image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 3px solid white;
+        }
+        h1, h2 {
+            color: #ffcc00;
+            text-align: center;
+        }
+        p {
+            text-align: justify;
+            padding: 10px;
+        }
+        .map-container {
+            width: 100%;
+            margin-top: 40px; /* Margin to space out from the content */
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .map-container {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Kolli Hills</h1>
+        </div>
+        <div class="content">
+            <div class="image">
+                <img src="https://th.bing.com/th/id/OIP.f3MmJwWiJmPceBGRQ6vsQQHaEK?rs=1&pid=ImgDetMain" alt="Kolli Hills">
+            </div>
+            <div class="text">
+                <p>Kolli Hills, located in Tamil Nadu, is a scenic mountain range known for its breathtaking views, lush greenery, and famous 70 hairpin bends. The hills are part of the Eastern Ghats and stand at an elevation of around 1300 meters above sea level.</p>
+                <h2>History and Significance</h2>
+                <p>Kolli Hills has a rich history and is often associated with the legendary sage Agastya, who is believed to have meditated here. It is also mentioned in ancient Tamil literature as "Kolli Malai," meaning the "Mountains of Death," due to its steep terrain and dense forests.</p>
+                <p>The region is home to the famous Arapaleeswarar Temple, dedicated to Lord Shiva, which is a popular pilgrimage site. The temple is believed to have been built by the early Chola kings and continues to attract devotees from all over the state.</p>
+                <h2>Tourist Attractions</h2>
+                <p>Kolli Hills offers a range of attractions, including the stunning Agaya Gangai Waterfalls, which cascade down from a height of 300 feet. Other points of interest include the Botanical Garden, Siddhar Caves, and the mesmerizing view from Seekuparai and Selur Nadu.</p>
+                <p>Adventure seekers can enjoy trekking, biking, and nature trails in the region. The cool climate and serene atmosphere make Kolli Hills a perfect getaway for travelers looking to escape the hustle and bustle of city life.</p>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3910.842412670141!2d77.6971352147729!3d11.518127591356963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bad2871b50d75f3%3A0x276bb609a7607c2e!2sKolli%20Hills!5e0!3m2!1sen!2sin!4v1679834964317!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</body>
+</html>

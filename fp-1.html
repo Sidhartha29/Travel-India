@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Famous Places in India - Transportation Booking</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: brown;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .search-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+        .search-container input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-container button {
+            padding: 10px 15px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background: #218838;
+        }
+        .destinations {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 10px;
+        }
+        .destination {
+            background: magenta;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            overflow: hidden;
+            width: 300px;
+        }
+        .destination img {
+            width: 100%;
+            height: 350px;
+        }
+        .destination h3 {
+            padding: 10px;
+            text-align: center;
+        }
+        .img {
+            width: 300px;
+            height: 200px;
+        }
+        .po {
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            width: 30px;
+            position: relative;
+            height: 20px;
+        }
+        .po {
+            width: 100%;
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Redirect to the destination page
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+
+        // Filter destinations based on the search input
+        function searchDestinations() {
+            var searchInput = document.getElementById("searchInput").value.toLowerCase(); // Get search input
+            var destinations = document.getElementsByClassName("destination"); // Get all destination divs
+
+            for (var i = 0; i < destinations.length; i++) {
+                var destinationName = destinations[i].getElementsByTagName("h3")[0].textContent.toLowerCase(); // Get the name of the destination
+                
+                // If the destination name matches the search input, show it, otherwise hide it
+                if (destinationName.includes(searchInput)) {
+                    destinations[i].style.display = "block";
+                } else {
+                    destinations[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+    <header>
+        <h1>Explore Famous Places in Andhra Pradesh</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for destinations..." onkeyup="searchDestinations()">
+        <button type="button">Search</button>
+    </div>
+
+    <div class="destinations">
+        <div class="destination">
+            <img src="https://cdn.talesofbackpacker.com/wp-content/uploads/2022/12/Maredumilli.jpg" alt="MAREDUMILLI" style="width:300px" onclick="redirectTo('maredumilli.html')">
+            <h3 style="color:white">MAREDUMILLI</h3>
+        </div>
+        <div class="destination">
+            <img src="https://www.fabhotels.com/blog/wp-content/uploads/2018/10/1000x650-313.jpg" onclick="redirectTo('vizag beach.html')">
+            <h3 style="color:white">VIZAG BEACH</h3>
+        </div>
+        <div class="destination">
+            <img src="https://th.bing.com/th/id/R.d572a31dd3d7990788c12c69eab7fcf0?rik=Jta7aYcJtrbGxw&riu=http%3a%2f%2fwww.go2india.in%2fupimg%2f7760.jpg&ehk=kkoniU9xn1fujOJfQfxPSTZHAEFKGq6uB81qR4Yo6nQ%3d&risl=&pid=ImgRaw&r=0" alt="Kerala Backwaters" onclick="redirectTo('dwaraka tirumala.html')">
+            <h3 style="color:white">DWARAKA TIRUMALA</h3>
+        </div>
+        <div class="destination">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/fa/e0/29/tirumala-temple.jpg?w=900&h=500&s=1" alt="Jaipur" onclick="redirectTo('tirupathi.html')">
+            <h3 style="color:white">TIRUPATHI</h3>
+        </div>
+        <div class="destination">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrnIuD8MDpCYHaR8DPfd1gwz9jw_KFUNEHsw&s" onclick="redirectTo('araku.html')">
+            <h3 style="color:white">ARAKU</h3>
+        </div>
+        <div class="destination">
+            <img src="https://www.dailypioneer.com/uploads/2022/story/images/big/no-ambiguity--amaravati-is-the-andhra-capital-2022-01-01.jpg" onclick="redirectTo('amaravathi.html')">
+            <h3 style="color:white">AMARAVATHI</h3>
+        </div>
+        <div class="destination">
+            <img src="https://th.bing.com/th/id/OIP.g7Xr776uPf_fGtQK0Ti50gHaFj?rs=1&pid=ImgDetMain" onclick="redirectTo('gandikota.html')">
+            <h3 style="color:white">GANDIKOTA</h3>
+        </div>
+        <div class="destination">
+            <img src="https://pujanpujari.com/wp-content/uploads/2023/01/Srisailam-1.jpg" onclick="redirectTo('srisailam.html')">
+            <h3 style="color:white">SRI SAILAM</h3>
+        </div>
+        <div class="destination">
+            <img src="https://th.bing.com/th/id/R.4b5a92ef74a37d51175bc9b7b37dcd8d?rik=NSQfn6ct3Xw3pA&riu=http%3a%2f%2fwww.trawell.in%2fadmin%2fimages%2fupload%2f565594159Kurnool_Main.jpg&ehk=gVJ9CMSVO4wRCWRwn%2bFJuh458EaULDRZKAlm0ipqoXk%3d&risl=&pid=ImgRaw&r=0" onclick="redirectTo('kurnool.html')">
+            <h3 style="color:white">KURNOOL</h3>
+        </div>
+        <div class="destination">
+            <img src="https://wallpapercave.com/wp/wp8705724.jpg" onclick="redirectTo('godavari.html')">
+            <h3 style="color:white">RIVER GODAVARI</h3>
+        </div>
+        <div class="destination">
+            <img src="https://www.holidify.com/images/cmsuploads/compressed/6854600495_d024527b3a_b_20170912141052.jpg" onclick="redirectTo('lepakshi.html')">
+            <h3 style="color:white">LEPAKSHI</h3>
+        </div>
+        <div class="destination">
+            <img src="https://3.bp.blogspot.com/-JC0WTAEjTjA/WiXKynbQk1I/AAAAAAAAZtU/w3e9QrosfJ4PSBgNYoCQ423k-au7iYpEQCKgBGAs/s1600/IMG_20171203_061514045.jpg" onclick="redirectTo('lambasingi.html')">
+            <h3 style="color:white">LAMBASINGHI</h3>
+        </div>
+        <div class="destination">
+            <img src="https://lh6.googleusercontent.com/-Nd9-3OTtkSU/TYd4S2CTAlI/AAAAAAAAAv0/y2_7RcWc5PM/s640/Picture8.jpg" onclick="redirectTo('kailasagiri.html')">
+            <h3 style="color:white">KAILASAGIRI</h3>
+        </div>
+        <div class="destination">
+            <img src="https://image3.mouthshut.com/images/imagesp/925881782s.jpg" onclick="redirectTo('konaseema.html')">
+            <h3 style="color:white">KONASEMA</h3>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Famous Places in Delhi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: cyan;
+            padding: 20px;
+            text-align: center;
+        }
+        .search-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+        .search-container input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .destinations {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 10px;
+        }
+        .destination {
+            background: aquamarine;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            overflow: hidden;
+            width: 300px;
+        }
+        .destination img {
+            width: 100%;
+            height: 350px;
+        }
+        .destination h3 {
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+    </style>
+    <script>
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+
+        function searchDestinations() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const destinations = document.querySelectorAll('.destination');
+
+            destinations.forEach(destination => {
+                const destinationName = destination.querySelector('h3').textContent.toLowerCase();
+                if (destinationName.includes(searchInput)) {
+                    destination.style.display = 'block';
+                } else {
+                    destination.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Explore Famous Places in DELHI</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search ..." oninput="searchDestinations()">
+    </div>
+
+    <div class="destinations">
+        <div class="destination">
+            <img src="https://www.india-a2z.com/images/Red-fort1.jpg" onclick="redirectTo('redfort.html')">
+            <h3>RED FORT</h3>
+        </div>
+        <div class="destination">
+            <img src="https://imgmedia.lbb.in/media/2019/09/5d6e3d263bfc0176114de494_1567505702530.jpg" onclick="redirectTo('qutubminar.html')">
+            <h3>QUTUB MINAR</h3>
+        </div>
+        <div class="destination">
+            <img src="https://www.holidify.com/images/cmsuploads/compressed/5621259188_e74d63cb05_b_20180302140149.jpg" onclick="redirectTo('india gate.html')">
+            <h3>INDIA GATE</h3>
+        </div>
+        <div class="destination">
+            <img src="https://www.kahajaun.com/wp-content/uploads/2020/03/Lotus-Temple-Delhi-Kahajaun-1200x900.jpg" onclick="redirectTo('lotustemple.html')">
+            <h3>LOTUS TEMPLE</h3>
+        </div>
+        <div class="destination">
+            <img src="https://cdn.britannica.com/09/189809-050-FAC505B0/Jama-Masjid-Delhi.jpg" onclick="redirectTo('jamamaszid.html')">
+            <h3>JAMA MASJID</h3>
+        </div>
+        <div class="destination">
+            <img src="https://a.travel-assets.com/findyours-php/viewfinder/images/res70/67000/67991-New-Delhi.jpg" onclick="redirectTo('rastapathibavan.html')">
+            <h3>RASTHRAPATI BAVAN</h3>
+        </div>
+        <div class="destination">
+            <img src="https://preview.redd.it/4plzl5axpu041.jpg?auto=webp&s=af73a72a4890b439f8ca72e97613673dfd0bd150" onclick="redirectTo('Swaminarayan.html')">
+            <h3>SWAMINARAYAN TEMPLE</h3>
+        </div>
+        <div class="destination">
+            <img src="https://st.adda247.com/https://wpassets.adda247.com/wp-content/uploads/multisite/sites/5/2022/05/12120742/Madhavi-Gaur.png" onclick="redirectTo('tajmahal.html')">
+            <h3>TAJ MAHAL</h3>
+        </div>
+    </div>
+</body>
+</html>

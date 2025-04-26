@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Seat Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: rgb(230, 255, 192);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .bus-container {
+            display: grid;
+            grid-template-columns: repeat(5, 50px);
+            gap: 5px;
+            margin-top: 20px;
+            background-color: rgba(76, 181, 215, 0.638);
+            padding: 10px;
+            border-radius: 5px;
+            width: 280px; 
+        }
+        .seat {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(20, 227, 131);
+            border: 2px solid #fff;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .seat.selected {
+            background-color: rgb(35, 169, 35);
+        }
+        .seat.occupied {
+            background-color: rgb(225, 224, 217);
+            cursor: not-allowed;
+        }
+        .aisle {
+            width: 50px;
+            height: 50px;
+            background: none;
+        }
+        .driver {
+            grid-column: span 5;
+            background-color: blue;
+            color: yellowgreen;
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+        }
+        .selected-seats, .booking-form {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .booking-form input, .booking-form button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .confirmation-message {
+            margin-top: 20px;
+            font-size: 20px;
+            color: green;
+            display: none; 
+        }
+        .total-amount {
+            margin-top: 10px;
+            font-size: 18px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Bus Seat Booking</h2>
+    <div class="confirmation-message" id="confirmation-message"></div>
+    <div class="bus-container">
+        <div class="driver">Driver</div>
+        <div class="seat">1</div>
+        <div class="seat">2</div>
+        <div class="aisle"></div>
+        <div class="seat">3</div>
+        <div class="seat">4</div>
+        <div class="seat">5</div>
+        <div class="seat">6</div>
+        <div class="aisle"></div>
+        <div class="seat">7</div>
+        <div class="seat">8</div>
+        <div class="seat">9</div>
+        <div class="seat">10</div>
+        <div class="aisle"></div>
+        <div class="seat">11</div>
+        <div class="seat">12</div>
+        <div class="seat">13</div>
+        <div class="seat">14</div>
+        <div class="aisle"></div>
+        <div class="seat">15</div>
+        <div class="seat">16</div>
+        <div class="seat">17</div>
+        <div class="seat">18</div>
+        <div class="aisle"></div>
+        <div class="seat">19</div>
+        <div class="seat">20</div>
+        <div class="seat">21</div>
+        <div class="seat">22</div>
+        <div class="aisle"></div>
+        <div class="seat">23</div>
+        <div class="seat">24</div>
+        <div class="seat">25</div>
+        <div class="seat">26</div>
+        <div class="aisle"></div>
+        <div class="seat">27</div>
+        <div class="seat">28</div>
+        <div class="seat">29</div>
+        <div class="seat">30</div>
+        <div class="aisle"></div>
+        <div class="seat">31</div>
+        <div class="seat">32</div>
+        <div class="seat">33</div>
+        <div class="seat">34</div>
+        <div class="aisle"></div>
+        <div class="seat">35</div>
+        <div class="seat">36</div>
+    </div>
+    <div class="selected-seats"> Selected Seats: <span id="selected-seats-list">None</span></div>
+    <div class="total-amount"> Total Amount: <span id="total-amount">0</span> units</div>
+    <div class="booking-form">
+        <h3>Passenger Details</h3>
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <input type="text" id="phone" placeholder="Enter phone number" required>
+        <button onclick="confirmBooking()">Confirm Booking</button>
+    </div>
+
+    <script type="module">
+       
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+
+       
+        const firebaseConfig = {
+            apiKey: "AIzaSyCtPvC9xPRf9r_xZgrLsmy7WsgV0osLreg",
+            authDomain: "travel-india-abc9.firebaseapp.com",
+            databaseURL: "https://travel-india-abc9-default-rtdb.firebaseio.com",
+            projectId: "travel-india-abc9",
+            storageBucket: "travel-india-abc9.firebasestorage.app",
+            messagingSenderId: "349177620801",
+            appId: "1:349177620801:web:1a5ed571906c2de85399c0",
+            measurementId: "G-4P08M66C5F"
+        };
+
+        
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        document.querySelectorAll('.seat:not(.occupied)').forEach(seat => {
+            seat.addEventListener('click', () => {
+                seat.classList.toggle('selected');
+                updateSelectedSeats();
+            });
+        });
+
+        function updateSelectedSeats() {
+            const selectedSeats = document.querySelectorAll('.seat.selected');
+            const selectedSeatNumbers = [...selectedSeats].map(seat => seat.textContent);
+            document.getElementById('selected-seats-list').textContent = selectedSeatNumbers.length > 0 ? selectedSeatNumbers.join(', ') : 'None';
+            
+            const amount = selectedSeatNumbers.length * 600; 
+            document.getElementById('total-amount').textContent = amount;
+        }
+
+        function confirmBooking() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const selectedSeats = document.getElementById('selected-seats-list').textContent;
+            const confirmationMessage = document.getElementById('confirmation-message');
+            const amount = selectedSeats.split(', ').length * 600; 
+
+            if (!name || !phone || selectedSeats === 'None') {
+                alert('Please enter all details and select at least one seat.');
+                return;
+            }
+
+            
+            const bookingsRef = ref(database, 'bookings/');
+            get(bookingsRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const bookings = snapshot.val();
+                    const bookedSeats = Object.values(bookings).flatMap(booking => booking.seats.split(', '));
+                    const selectedSeatNumbers = selectedSeats.split(', ');
+
+                    const alreadyBookedSeats = selectedSeatNumbers.filter(seat => bookedSeats.includes(seat));
+                    if (alreadyBookedSeats.length > 0) {
+                        alert(`The following seats are already booked: ${alreadyBookedSeats.join(', ')}. Please select different seats.`);
+                        return;
+                    }
+
+                    
+                    const bookingRef = ref(database, 'bookings/' + phone);
+                    set(bookingRef, {
+                        name: name,
+                        phone: phone,
+                        seats: selectedSeats
+                    }).then(() => {
+                        confirmationMessage.textContent = `Your booking is confirmed! Name: ${name}, Phone: ${phone}, Seats: ${selectedSeats}`;
+                        confirmationMessage.style.display = 'block';
+
+                        document.querySelectorAll('.seat.selected').forEach(seat => {
+                            seat.classList.add('occupied');
+                            seat.classList.remove('selected');
+                        });
+                        updateSelectedSeats();
+                        loadBookedSeats(); 
+                        window.location.href = `payment.html?amount=${amount}`;
+                    }).catch((error) => {
+                        console.error(error);
+                        alert('Error storing booking details.');
+                    });
+                } else {
+                   
+                    const bookingRef = ref(database, 'bookings/' + phone);
+                    set(bookingRef, {
+                        name: name,
+                        phone: phone,
+                        seats: selectedSeats
+                    }).then(() => {
+                        confirmationMessage.textContent = `Your booking is confirmed! Name: ${name}, Phone: ${phone}, Seats: ${selectedSeats}`;
+                        confirmationMessage.style.display = 'block';
+
+                        document.querySelectorAll('.seat.selected').forEach(seat => {
+                            seat.classList.add('occupied');
+                            seat.classList.remove('selected');
+                        });
+                        updateSelectedSeats();
+                        loadBookedSeats(); 
+
+                        
+                        window.location.href = `payment.html?amount=${amount}`;
+                    }).catch((error) => {
+                        console.error(error);
+                        alert('Error storing booking details.');
+                    });
+                }
+            }).catch((error) => {
+                console.error(error);
+                alert('Error retrieving booking details.');
+            });
+        }
+
+        function loadBookedSeats() {
+            const bookingsRef = ref(database, 'bookings/');
+            get(bookingsRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const bookings = snapshot.val();
+                    const bookedSeats = Object.values(bookings).flatMap(booking => booking.seats.split(', '));
+
+                    bookedSeats.forEach(seatNumber => {
+                        const seatElement = document.querySelector(`.seat:not(.occupied)`);
+                        if (seatElement && seatElement.textContent === seatNumber) {
+                            seatElement.classList.add('occupied');
+                        }
+                    });
+                }
+            }).catch((error) => {
+                console.error(error);
+            });
+        }
+
+        // Load booked seats from the database when the page loads
+        window.onload = loadBookedSeats;
+
+        // Expose functions to global scope
+        window.confirmBooking = confirmBooking;
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Famous Places in India - Transportation Booking</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background:indianred;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .search-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+        .search-container input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-container button {
+            padding: 10px 15px;
+            background:black;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background: #218838;
+        }
+        .destinations {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 10px;
+        }
+        .destination {
+            background:indianred;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            overflow: hidden;
+            width: 300px;
+        }
+        .destination img {
+            width: 100%;
+            height: 350px;
+            
+        }
+        .destination h3 {
+            padding: 10px;
+            text-align: center;
+        }
+        .img{
+          width: 300px;
+          height:200px
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+    </script>
+
+<header>
+    <h1>Explore Famous Places in KERALA</h1>
+</header>
+
+<div class="search-container">
+    <input type="text" placeholder="Search for transportation options...">
+    <button type="button">Search</button>
+</div>
+<div class="destinations">
+    <div class="destination">
+        <img src="https://tripnstay.com/wp-content/uploads/2019/02/Kannan-Devan-Hills.jpg" onclick="redirectTo('munnar.html')">
+        <h3 style="color:white">MUNNAR</h3>
+    </div>
+    <div class="destination">
+        <img src="https://pyt-blogs.imgix.net/2020/07/abhishek-prasad-ii0oWs5abCo-unsplash-scaled.jpg?auto=format&ixlib=php-3.3.0"onclick="redirectTo('allipery.html')">
+        <h3 style="color:white">ALLEPPEY</h3>
+    </div>
+    <div class="destination">
+        <img src="https://th.bing.com/th/id/OIP.XcMGek2eCNXOAUvROlnYYAHaEK?rs=1&pid=ImgDetMain" onclick="redirectTo('sabarimala.html')">
+        <h3 style="color:white">SABARIMALA</h3>
+    </div>
+    <div class="destination">
+        <img src="https://static.toiimg.com/photo/48251977/.jpg" onclick="redirectTo('kochi.html')">
+        <h3 style="color:white">KOCHI</h3>
+    </div>
+    <div class="destination">
+        <img src="https://www.nativeplanet.com/img/2016/08/3vadakkunnathan-26-1472194050.jpg" onclick="redirectTo('tirssur.html')">
+        <h3 style="color:white">THRISSUR</h3>
+    </div>
+    <div class="destination">
+        <img src="https://1.bp.blogspot.com/-H8WQZjCV1i0/YBKhpBXqXPI/AAAAAAAADxE/XsdqDZfaNc0q7v3UZ2K_3bNtP0v66nmCACLcBGAsYHQ/s1024/padma.jpg" onclick="redirectTo('padmanabaswami.html')">
+        <h3 style="color:white">padmanabhaswamy temple</h3>
+    </div>
+    <div class="destination">
+        <img src="https://www.holidify.com/images/compressed/5077.jpg" onclick="redirectTo('varakala.html')">
+        <h3 style="color:white">VARKALA</h3>
+    </div>
+    <div class="destination">
+        <img src="https://i.ytimg.com/vi/cfhXzj7jLAI/maxresdefault.jpg" onclick="redirectTo('thekkady boat.html')">
+        <h3 style="color:white">THEKKADY BOAT ROAT</h3>
+    </div>
+    <div class="destination">
+        <img src="https://media-cdn.tripadvisor.com/media/photo-s/07/f9/fe/37/thommankuthu-falls.jpg" onclick="redirectTo('thommankuthu.html')">
+        <h3 style="color:white">Thommankuthu Waterfall in India</h3>
+    </div>
+    <div class="destination">
+        <img src="https://www.ourmunnartrip.com/upload_pic/destinations/gallery/thumb/eravikulam-national-park-nilagiritar-munnar.webp" onclick="redirectTo('national park.html')">
+        <h3 style="color:white">Eravikulam National Park</h3>
+    </div>

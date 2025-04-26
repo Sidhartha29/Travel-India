@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Bookings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:#FFF0F5;
+        }
+
+        header {
+            background-color: #333;
+            color:white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .booking-form {
+            background-color:mediumpurple;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .booking-form h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: white;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid green;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color:aqua;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .qr-code {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .qr-code img {
+            width: 200px;
+            height: 200px;
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+
+        .booking-complete {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+
+        .pay-now {
+            display: none;
+            background-color: aqua;
+            color: #fff;
+            padding: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+            margin-top: 15px;
+        }
+
+        .pay-now:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        function confirmBooking(event) {
+            event.preventDefault(); // Prevent form submission
+            generateQRCode(); // Generate QR code for payment
+        }
+
+        function generateQRCode() {
+            const amount = 199; // Replace with the actual amount
+            const qrCodeContainer = document.getElementById('qrcode');
+            qrCodeContainer.innerHTML = ''; // Clear any existing QR code
+
+            new QRCode(qrCodeContainer, {
+                text: upi://pay?pa=7702496143@ybl&pn=Your Name&am=${amount}&cu=INR,
+                width: 200,
+                height: 200
+            });
+
+            alert('QR code generated! Scan to pay.');
+
+            // Enable the "Pay Now" button after QR code is generated
+            document.getElementById('pay-now').style.display = 'block';
+        }
+
+        function completeBooking() {
+            document.getElementById('booking-complete').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Auto Booking for Holidays</h1>
+    </header>
+    <main>
+        <section class="booking-form">
+            <h2>Book Your Auto Now!</h2>
+            <form onsubmit="confirmBooking(event)">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="travel-date">Travel Date:</label>
+                <input type="date" id="travel-date" name="travel-date" required>
+
+                <label for="auto-type">Auto Type:</label>
+                <select id="auto-type" name="auto-type" required>
+                    <option value="standard">Standard</option>
+                    <option value="deluxe">Deluxe</option>
+                    <option value="electric">Electric</option>
+                </select>
+
+                <input type="submit" value="Book Now">
+            </form>
+            <div id="qrcode" class="qr-code"></div>
+            <button id="pay-now" class="pay-now" onclick="completeBooking()"> complete booking</button>
+            <div id="booking-complete" class="booking-complete">Your booking is completed!</div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapidoo Bike Booking</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #1c1c1c;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .booking-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            font-size: 16px;
+        }
+
+        .booking-form h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            font-size: 16px;
+            color: #333;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="date"]:focus, select:focus {
+            border-color: #1c1c1c;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .qr-code {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .qr-code img {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+        }
+
+        .booking-complete {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .pay-now {
+            display: none;
+            background-color: #28a745;
+            color: #fff;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .pay-now:hover {
+            background-color: #218838;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 480px) {
+            .booking-form {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            header {
+                font-size: 22px;
+            }
+
+            input[type="submit"], .pay-now {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        function confirmBooking(event) {
+            event.preventDefault(); // Prevent form submission
+            generateQRCode(); // Generate QR code for payment
+        }
+
+        function generateQRCode() {
+            const bikeType = document.getElementById("bike-type").value;
+            let amount = 0;
+
+            // Define amount based on selected bike type
+            if (bikeType === "standard") {
+                amount = 100; // Set amount for standard bike
+            } else if (bikeType === "deluxe") {
+                amount = 150; // Set amount for deluxe bike
+            } else if (bikeType === "electric") {
+                amount = 200; // Set amount for electric bike
+            }
+
+            const qrCodeContainer = document.getElementById('qrcode');
+            qrCodeContainer.innerHTML = ''; // Clear any existing QR code
+
+            // Generate Rapidoo payment link for bike booking
+            const rapidooPaymentLink = `upi://pay?pa=7702496143@ybl&pn=Your Name&am=${amount}&cu=INR`;
+
+            new QRCode(qrCodeContainer, {
+                text: rapidooPaymentLink,
+                width: 200,
+                height: 200
+            });
+
+            alert('QR code generated! Scan to pay via Rapidoo.');
+
+            // Enable the "Pay Now" button after QR code is generated
+            document.getElementById('pay-now').style.display = 'block';
+        }
+
+        function completeBooking() {
+            document.getElementById('booking-complete').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Rapidoo Bike Booking</h1>
+    </header>
+    <main>
+        <section class="booking-form">
+            <h2>Book Your Bike Now!</h2>
+            <form onsubmit="confirmBooking(event)">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="travel-date">Travel Date:</label>
+                <input type="date" id="travel-date" name="travel-date" required>
+
+                <label for="bike-type">Bike Type:</label>
+                <select id="bike-type" name="bike-type" required>
+                    <option value="standard">Standard</option>
+                    <option value="deluxe">Deluxe</option>
+                    <option value="electric">Electric</option>
+                </select>
+
+                <input type="submit" value="Book Now">
+            </form>
+            <div id="qrcode" class="qr-code"></div>
+            <button id="pay-now" class="pay-now" onclick="completeBooking()">booking complete</button>
+            <div id="booking-complete" class="booking-complete">Your booking is completed!</div>
+        </section>
+    </main>
+</body>
+</html>

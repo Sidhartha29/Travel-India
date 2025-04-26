@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travel Review</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #6dd5fa, #2980b9);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .review-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    h1, #thankYouMessage {
+      color: #f1c40f;
+      margin-bottom: 20px;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      font-size: 2em;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .stars span {
+      transition: transform 0.2s;
+    }
+
+    .stars span:hover,
+    .stars span.active {
+      color: gold;
+      transform: scale(1.2);
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      resize: none;
+      font-size: 1em;
+      margin-bottom: 20px;
+      background: #fff;
+      color: #333;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #f1c40f;
+      color: #333;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e1b20e;
+    }
+
+    #thankYouMessage {
+      display: none;
+      font-size: 1.4em;
+      color: #2ecc71;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="review-container">
+    <h1 id="title">Rate Your Experience</h1>
+    <div id="thankYouMessage">🎉 Thank you for your review! </div>
+
+    <div id="reviewForm">
+      <div class="stars" id="starRating">
+        <span data-value="1">&#9733;</span>
+        <span data-value="2">&#9733;</span>
+        <span data-value="3">&#9733;</span>
+        <span data-value="4">&#9733;</span>
+        <span data-value="5">&#9733;</span>
+      </div>
+      <textarea id="reviewText" placeholder="Share your thoughts..."></textarea>
+      <button id="submitBtn">Submit Review</button>
+    </div>
+  </div>
+
+  <script>
+    const stars = document.querySelectorAll('#starRating span');
+    const submitBtn = document.getElementById('submitBtn');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+    const reviewForm = document.getElementById('reviewForm');
+    const title = document.getElementById('title');
+
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        stars.forEach((s, i) => {
+          s.classList.toggle('active', i <= index);
+        });
+      });
+    });
+
+    submitBtn.addEventListener('click', () => {
+      thankYouMessage.style.display = 'block';
+      reviewForm.style.display = 'none';
+      title.style.display = 'none';
+
+      setTimeout(() => {
+        window.location.href = "index1.html"; // Change this to your actual homepage
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

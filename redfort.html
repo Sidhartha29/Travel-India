@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Fort</title>
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+      
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        
+        h1 {
+            color: #b22222;
+        }
+
+       
+        .fort-image {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        
+        p {
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+            
+            .fort-image {
+                width: 100%;
+            }
+        }
+
+        /* Location map section */
+        .map-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 450px;
+            border: 0;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Red Fort (Lal Qila)</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Delhi_fort.jpg/330px-Delhi_fort.jpg" alt="Red Fort, Delhi" class="fort-image">
+        <p>
+            The Red Fort, also known as Lal Qila, is a historic Mughal fort in Delhi, India, that served as the primary residence of the Mughal emperors. Emperor Shah Jahan commissioned the construction of the Red Fort on 12 May 1639, following his decision to relocate the Mughal capital from Agra to Delhi.
+        </p>
+        <p>
+            Originally adorned in red and white, the fort's design is attributed to Ustad Ahmad Lahori, the architect behind the Taj Mahal. The Red Fort represents the pinnacle of Mughal architecture during Shah Jahan's reign, blending Persian palace influences with indigenous Indian architectural traditions.
+        </p>
+        <p>
+            The fort was plundered and stripped of its artwork and jewels during Nadir Shah's invasion of the Mughal Empire in 1739. Most of the fort's marble structures were subsequently demolished by the British following the Indian Rebellion of 1857.
+        </p>
+        <p>
+            On 15 August 1947, the first Prime Minister of India, Jawaharlal Nehru, raised the Indian flag above the Lahori Gate. On India's Independence Day, observed annually on 15 August, the Prime Minister ceremonially raises the Indian tricolour flag at the main gate of the historic fort and delivers a nationally broadcast address from its ramparts.
+        </p>
+    </div>
+
+    <!-- Location Map Section -->
+    <div class="map-container">
+        <h2>Location of Red Fort</h2>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3531.6661360874367!2d77.229511!3d28.656174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1d03259e5b83%3A0x4e35d519aba847da!2sRed%20Fort!5e0!3m2!1sen!2sin!4v1679376840544!5m2!1sen!2sin" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+    </div>
+
+</body>
+</html>

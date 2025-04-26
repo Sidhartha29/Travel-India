@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahabalipuram</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Container Styling */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Heading Styling */
+        h1 {
+            color: #004d40;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            grid-column: span 2;
+            text-align: center;
+        }
+
+        /* Image Styling */
+        .mahali-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Text Styling */
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        /* Button Styling */
+        .btn {
+            background-color: #004d40;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #00695c;
+        }
+
+        /* Map Styling */
+        .map-container {
+            grid-column: span 2;
+            margin-top: 30px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .mahali-image {
+                width: 100%;
+                height: auto;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mahabalipuram</h1>
+        <div class="image">
+            <img src="https://cdn.getyourguide.com/img/tour/5dc9aee216e38.jpeg/132.webp" alt="Shore Temple, Mahabalipuram" class="mahali-image">
+        </div>
+        <div class="content">
+            <p>
+                Mahabalipuram, also known as Mamallapuram, is a historic coastal town in Tamil Nadu, India, renowned for its ancient rock-cut temples, monuments, and sculptures. It is located along the Bay of Bengal and is known for its UNESCO World Heritage Sites, making it a major tourist attraction.
+            </p>
+            <p>
+                The town’s most famous landmark is the Shore Temple, which was built in the 7th century and is one of the oldest structural temples in India. Mahabalipuram is also famous for its Pancha Rathas, five monolithic temples, and the Arjuna's Penance, an intricately carved relief depicting scenes from Hindu mythology.
+            </p>
+            <p>
+                Mahabalipuram was a thriving port city during the Pallava dynasty in the 7th and 8th centuries. The town's rich architectural heritage reflects the artistry and engineering skills of the Pallava rulers, with the temples and monuments crafted from granite stones without the use of mortar.
+            </p>
+            <p>
+                The site is also famous for its annual Mahabalipuram Dance Festival, held during the winter months, which showcases classical dance performances. The town’s proximity to Chennai makes it a popular destination for travelers seeking to explore South India’s rich cultural history and stunning coastal landscapes.
+            </p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+        
+        <!-- Map Section -->
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.8902366358286!2d80.22105631474036!3d12.620595092173018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f02d32c04bb%3A0x6c3e496eb91a9a1!2sShore%20Temple!5e0!3m2!1sen!2sin!4v1679853851948!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</body>
+</html>

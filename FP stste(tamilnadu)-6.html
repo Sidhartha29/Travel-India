@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Famous Places in Tamil Nadu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: greenyellow;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .search-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+        .search-container input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .destinations {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 10px;
+        }
+        .destination {
+            background: silver;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            overflow: hidden;
+            width: 300px;
+        }
+        .destination img {
+            width: 100%;
+            height: 350px;
+        }
+        .destination h3 {
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+    </style>
+    <script>
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+
+        function searchDestinations() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const destinations = document.querySelectorAll('.destination');
+
+            destinations.forEach(destination => {
+                const destinationName = destination.querySelector('h3').textContent.toLowerCase();
+                if (destinationName.includes(searchInput)) {
+                    destination.style.display = 'block';
+                } else {
+                    destination.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Explore Famous Places in TAMILNADU</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for destinations..." oninput="searchDestinations()">
+    </div>
+
+    <div class="destinations">
+        <div class="destination">
+            <img src="https://as2.ftcdn.net/v2/jpg/05/55/71/21/1000_F_555712196_W2xZHqABd9DuNfKO0lmFX2AZkueCc1PP.jpg" onclick="redirectTo('Kolli hills.html')">
+            <h3>Nama Aruvi Kolli Hills</h3>
+        </div>
+        <div class="destination">
+            <img src="https://cdn2.i-scmp.com/sites/default/files/images/methode/2017/08/10/57affeea-7cbd-11e7-83c9-6be3df13972a_image_hires_140516.JPG" onclick="redirectTo('meenakshi temple.html')">
+            <h3>Meenakshi Temple</h3>
+        </div>
+        <div class="destination">
+            <img src="https://th.bing.com/th/id/OIP.8K8LavCYWsMW0bThk9WlJQHaHU?rs=1&pid=ImgDetMain" onclick="redirectTo('Peeck Park.html')">
+            <h3>Peek Park Yercaud</h3>
+        </div>
+        <div class="destination">
+            <img src="https://2.bp.blogspot.com/-aW1ZZkarg9g/VxpHELfFrdI/AAAAAAAAe_s/954gI0sDUmo-LVbm4GbpN4bMmZXyNdZOgCLcB/s1600/DSC_0397.JPG" onclick="redirectTo('ranganadhaswamy temple.html')">
+            <h3>Ranganathaswamy Temple</h3>
+        </div>
+        <div class="destination">
+            <img src="https://www.go2india.in/tamilnadu/images/kodaikanal-lake-view-1.JPG" onclick="redirectTo('kodaikanal.html')">
+            <h3>Kodaikanal Lake</h3>
+        </div>
+        <div class="destination">
+            <img src="https://www.tripsavvy.com/thmb/X860CJ8HL70bxCI8StY-p86j4oE=/2127x1409/filters:fill(auto,1)/shore-temple-640319518-5c27ce2146e0fb0001e9184b.jpg" onclick="redirectTo('mahabalipuram.html')">
+            <h3>Mahabalipuram</h3>
+        </div>
+        <div class="destination">
+            <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/9/Marina-Beach-Aerial-view.jpg" onclick="redirectTo('marina beach.html')">
+            <h3>Marina Beach in Chennai</h3>
+        </div>
+        <div class="destination">
+            <img src="https://preview.redd.it/vcbrlihllxa61.jpg?width=960&crop=smart&auto=webp&s=e760d2ee17bb0fd0e9a351cdce081210322a6397" onclick="redirectTo('panbanbridge.html')">
+            <h3>Pamban Bridge in Rameshwaram</h3>
+        </div>
+        <div class="destination">
+            <img src="https://kanchipuramhandloomsilksworld.in/slide5.jpg" onclick="redirectTo('kanchipuram.html')">
+            <h3>Kanchipuram for its Silks</h3>
+        </div>
+        <div class="destination">
+            <img src="https://live.staticflickr.com/3641/3494088826_9b7c747a19_b.jpg" onclick="redirectTo('sunrise kanyakumari.html')">
+            <h3>Sunrise in Kanyakumari</h3>
+        </div>
+    </div>
+</body>
+</html>
