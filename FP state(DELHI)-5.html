@@ -365,4 +365,265 @@
                 border-radius: 12px;
             }
 
-            .destinations-gri
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation for card appearance */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .destination-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .destination-card:nth-child(even) {
+            animation-delay: 0.1s;
+        }
+
+        .destination-card:nth-child(3n) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">TravelIndia</div>
+            <div class="nav-links">
+                <a href="#destinations">Destinations</a>
+                <a href="#packages">Packages</a>
+                <a href="#hotels">Hotels</a>
+                <a href="#flights">Flights</a>
+            </div>
+            <a href="javascript:history.back()" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Explore Delhi</h1>
+        <p>Discover India's capital city - a perfect blend of ancient heritage and modern marvels</p>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search for destinations in Delhi..." oninput="searchDestinations()">
+            <button type="button" class="search-btn">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="destinations-section">
+        <div class="filter-section">
+            <div class="filter-title">Popular Categories</div>
+            <div class="filter-tags">
+                <button class="filter-tag active" onclick="filterDestinations('all')">All Places</button>
+                <button class="filter-tag" onclick="filterDestinations('monument')">Monuments</button>
+                <button class="filter-tag" onclick="filterDestinations('temple')">Temples</button>
+                <button class="filter-tag" onclick="filterDestinations('fort')">Forts</button>
+                <button class="filter-tag" onclick="filterDestinations('government')">Government</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">Famous Places in Delhi</h2>
+        <p class="section-subtitle">From historic Red Fort to modern India Gate, explore the capital's most iconic landmarks</p>
+        
+        <div class="destinations-grid" id="destinationsGrid">
+            <div class="destination-card" data-category="fort" onclick="redirectTo('redfort.html')">
+                <img src="https://www.india-a2z.com/images/Red-fort1.jpg" alt="Red Fort" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Red Fort</h3>
+                </div>
+                <div class="destination-info">Fort</div>
+            </div>
+
+            <div class="destination-card" data-category="monument" onclick="redirectTo('qutubminar.html')">
+                <img src="https://imgmedia.lbb.in/media/2019/09/5d6e3d263bfc0176114de494_1567505702530.jpg" alt="Qutub Minar" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Qutub Minar</h3>
+                </div>
+                <div class="destination-info">Monument</div>
+            </div>
+
+            <div class="destination-card" data-category="monument" onclick="redirectTo('india gate.html')">
+                <img src="https://www.holidify.com/images/cmsuploads/compressed/5621259188_e74d63cb05_b_20180302140149.jpg" alt="India Gate" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">India Gate</h3>
+                </div>
+                <div class="destination-info">Monument</div>
+            </div>
+
+            <div class="destination-card" data-category="temple" onclick="redirectTo('lotustemple.html')">
+                <img src="https://www.kahajaun.com/wp-content/uploads/2020/03/Lotus-Temple-Delhi-Kahajaun-1200x900.jpg" alt="Lotus Temple" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Lotus Temple</h3>
+                </div>
+                <div class="destination-info">Temple</div>
+            </div>
+
+            <div class="destination-card" data-category="monument" onclick="redirectTo('jamamaszid.html')">
+                <img src="https://cdn.britannica.com/09/189809-050-FAC505B0/Jama-Masjid-Delhi.jpg" alt="Jama Masjid" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Jama Masjid</h3>
+                </div>
+                <div class="destination-info">Monument</div>
+            </div>
+
+            <div class="destination-card" data-category="government" onclick="redirectTo('rastapathibavan.html')">
+                <img src="https://a.travel-assets.com/findyours-php/viewfinder/images/res70/67000/67991-New-Delhi.jpg" alt="Rashtrapati Bhavan" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Rashtrapati Bhavan</h3>
+                </div>
+                <div class="destination-info">Government</div>
+            </div>
+
+            <div class="destination-card" data-category="temple" onclick="redirectTo('Swaminarayan.html')">
+                <img src="https://preview.redd.it/4plzl5axpu041.jpg?auto=webp&s=af73a72a4890b439f8ca72e97613673dfd0bd150" alt="Swaminarayan Temple" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Swaminarayan Temple</h3>
+                </div>
+                <div class="destination-info">Temple</div>
+            </div>
+
+            <div class="destination-card" data-category="monument" onclick="redirectTo('tajmahal.html')">
+                <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=500&fit=crop" alt="Taj Mahal (Agra)" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Taj Mahal (Agra)</h3>
+                </div>
+                <div class="destination-info">Monument</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <h2 class="section-title">Delhi by Numbers</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Famous Landmarks</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">UNESCO World Heritage Sites</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">32M</div>
+                <div class="stat-label">Population</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Years of History</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h5>Historic Monuments</h5>
+                <a href="#">Red Fort</a>
+                <a href="#">Qutub Minar</a>
+                <a href="#">India Gate</a>
+                <a href="#">Jama Masjid</a>
+                <a href="#">Humayun's Tomb</a>
+            </div>
+            <div class="footer-section">
+                <h5>Travel Services</h5>
+                <a href="#">Flights to Delhi</a>
+                <a href="#">Hotels in Delhi</a>
+                <a href="#">Delhi Tour Packages</a>
+                <a href="#">Car Rentals</a>
+            </div>
+            <div class="footer-section">
+                <h5>Plan Your Trip</h5>
+                <a href="#">Delhi Travel Guide</a>
+                <a href="#">Best Time to Visit</a>
+                <a href="#">Metro & Transport</a>
+                <a href="#">Street Food Guide</a>
+            </div>
+            <div class="footer-section">
+                <h5>Support</h5>
+                <a href="#">Customer Care</a>
+                <a href="#">Travel Insurance</a>
+                <a href="#">Emergency Contacts</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TravelIndia.com. Explore the heart of India - Delhi.</p>
+        </div>
+    </footer>
+
+    <script>
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+
+        function searchDestinations() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const destinations = document.querySelectorAll('.destination-card');
+
+            destinations.forEach(destination => {
+                const destinationName = destination.querySelector('h3').textContent.toLowerCase();
+                if (destinationName.includes(searchInput)) {
+                    destination.style.display = 'block';
+                } else {
+                    destination.style.display = 'none';
+                }
+            });
+        }
+
+        function filterDestinations(category) {
+            var destinations = document.getElementsByClassName("destination-card");
+            var filterTags = document.getElementsByClassName("filter-tag");
+            
+            // Update active filter tag
+            for (var i = 0; i < filterTags.length; i++) {
+                filterTags[i].classList.remove("active");
+            }
+            event.target.classList.add("active");
+            
+            // Filter destinations
+            for (var i = 0; i < destinations.length; i++) {
+                if (category === 'all') {
+                    destinations[i].style.display = "block";
+                } else {
+                    var destinationCategory = destinations[i].getAttribute("data-category");
+                    if (destinationCategory === category) {
+                        destinations[i].style.display = "block";
+                    } else {
+                        destinations[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // Add smooth scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.destination-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
