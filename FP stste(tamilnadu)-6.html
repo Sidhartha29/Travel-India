@@ -3,124 +3,512 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Famous Places in Tamil Nadu</title>
+    <title>Explore Tamil Nadu - Famous Places & Destinations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            box-sizing: border-box;
         }
-        header {
-            background: greenyellow;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.6;
         }
-        .search-container {
-            margin: 20px auto;
-            text-align: center;
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .search-container input[type="text"] {
-            padding: 10px;
-            width: 300px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .destinations {
+
+        .navbar {
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 10px;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .destination {
-            background: silver;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            overflow: hidden;
-            width: 300px;
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6b35;
         }
-        .destination img {
-            width: 100%;
-            height: 350px;
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
         }
-        .destination h3 {
-            padding: 10px;
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .back-btn {
+            background: #ff6b35;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: #e55a2b;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
             text-align: center;
             color: white;
         }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: white;
+            margin: -40px auto 0;
+            max-width: 800px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            padding: 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-container {
+            display: flex;
+            background: #f8f9ff;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 18px 25px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            background: transparent;
+        }
+
+        .search-btn {
+            background: #ff6b35;
+            border: none;
+            padding: 18px 35px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #e55a2b;
+        }
+
+        /* Destinations Section */
+        .destinations-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .destination-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .destination-card:hover .destination-image {
+            transform: scale(1.05);
+        }
+
+        .destination-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .destination-title {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            margin: 0;
+        }
+
+        .destination-info {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 107, 53, 0.9);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .filter-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tag {
+            background: #f0f0f0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .filter-tag:hover,
+        .filter-tag.active {
+            background: #0066cc;
+            color: white;
+        }
+
+        /* Statistics */
+        .stats-section {
+            background: #f8f9ff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 20px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h5 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ff6b35;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #ecf0f1;
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b35;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            color: #bdc3c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .search-container {
+                flex-direction: column;
+                border-radius: 12px;
+            }
+
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation for card appearance */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .destination-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .destination-card:nth-child(even) {
+            animation-delay: 0.1s;
+        }
+
+        .destination-card:nth-child(3n) {
+            animation-delay: 0.2s;
+        }
     </style>
-    <script>
-        function redirectTo(url) {
-            window.location.href = url;
-        }
-
-        function searchDestinations() {
-            const searchInput = document.getElementById('searchInput').value.toLowerCase();
-            const destinations = document.querySelectorAll('.destination');
-
-            destinations.forEach(destination => {
-                const destinationName = destination.querySelector('h3').textContent.toLowerCase();
-                if (destinationName.includes(searchInput)) {
-                    destination.style.display = 'block';
-                } else {
-                    destination.style.display = 'none';
-                }
-            });
-        }
-    </script>
 </head>
 <body>
-    <header>
-        <h1>Explore Famous Places in TAMILNADU</h1>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">TravelIndia</div>
+            <div class="nav-links">
+                <a href="#destinations">Destinations</a>
+                <a href="#packages">Packages</a>
+                <a href="#hotels">Hotels</a>
+                <a href="#flights">Flights</a>
+            </div>
+            <a href="javascript:history.back()" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </nav>
     </header>
 
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search for destinations..." oninput="searchDestinations()">
-    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Explore Tamil Nadu</h1>
+        <p>Discover the land of ancient temples, pristine beaches, and majestic hill stations in South India</p>
+    </section>
 
-    <div class="destinations">
-        <div class="destination">
-            <img src="https://as2.ftcdn.net/v2/jpg/05/55/71/21/1000_F_555712196_W2xZHqABd9DuNfKO0lmFX2AZkueCc1PP.jpg" onclick="redirectTo('Kolli hills.html')">
-            <h3>Nama Aruvi Kolli Hills</h3>
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search for destinations in Tamil Nadu..." oninput="searchDestinations()">
+            <button type="button" class="search-btn">
+                <i class="fas fa-search"></i> Search
+            </button>
         </div>
-        <div class="destination">
-            <img src="https://cdn2.i-scmp.com/sites/default/files/images/methode/2017/08/10/57affeea-7cbd-11e7-83c9-6be3df13972a_image_hires_140516.JPG" onclick="redirectTo('meenakshi temple.html')">
-            <h3>Meenakshi Temple</h3>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="destinations-section">
+        <div class="filter-section">
+            <div class="filter-title">Popular Categories</div>
+            <div class="filter-tags">
+                <button class="filter-tag active" onclick="filterDestinations('all')">All Places</button>
+                <button class="filter-tag" onclick="filterDestinations('temple')">Temples</button>
+                <button class="filter-tag" onclick="filterDestinations('hill-station')">Hill Stations</button>
+                <button class="filter-tag" onclick="filterDestinations('beach')">Beaches</button>
+                <button class="filter-tag" onclick="filterDestinations('heritage')">Heritage</button>
+                <button class="filter-tag" onclick="filterDestinations('nature')">Nature</button>
+            </div>
         </div>
-        <div class="destination">
-            <img src="https://th.bing.com/th/id/OIP.8K8LavCYWsMW0bThk9WlJQHaHU?rs=1&pid=ImgDetMain" onclick="redirectTo('Peeck Park.html')">
-            <h3>Peek Park Yercaud</h3>
-        </div>
-        <div class="destination">
-            <img src="https://2.bp.blogspot.com/-aW1ZZkarg9g/VxpHELfFrdI/AAAAAAAAe_s/954gI0sDUmo-LVbm4GbpN4bMmZXyNdZOgCLcB/s1600/DSC_0397.JPG" onclick="redirectTo('ranganadhaswamy temple.html')">
-            <h3>Ranganathaswamy Temple</h3>
-        </div>
-        <div class="destination">
-            <img src="https://www.go2india.in/tamilnadu/images/kodaikanal-lake-view-1.JPG" onclick="redirectTo('kodaikanal.html')">
-            <h3>Kodaikanal Lake</h3>
-        </div>
-        <div class="destination">
-            <img src="https://www.tripsavvy.com/thmb/X860CJ8HL70bxCI8StY-p86j4oE=/2127x1409/filters:fill(auto,1)/shore-temple-640319518-5c27ce2146e0fb0001e9184b.jpg" onclick="redirectTo('mahabalipuram.html')">
-            <h3>Mahabalipuram</h3>
-        </div>
-        <div class="destination">
-            <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/9/Marina-Beach-Aerial-view.jpg" onclick="redirectTo('marina beach.html')">
-            <h3>Marina Beach in Chennai</h3>
-        </div>
-        <div class="destination">
-            <img src="https://preview.redd.it/vcbrlihllxa61.jpg?width=960&crop=smart&auto=webp&s=e760d2ee17bb0fd0e9a351cdce081210322a6397" onclick="redirectTo('panbanbridge.html')">
-            <h3>Pamban Bridge in Rameshwaram</h3>
-        </div>
-        <div class="destination">
-            <img src="https://kanchipuramhandloomsilksworld.in/slide5.jpg" onclick="redirectTo('kanchipuram.html')">
-            <h3>Kanchipuram for its Silks</h3>
-        </div>
-        <div class="destination">
-            <img src="https://live.staticflickr.com/3641/3494088826_9b7c747a19_b.jpg" onclick="redirectTo('sunrise kanyakumari.html')">
-            <h3>Sunrise in Kanyakumari</h3>
-        </div>
-    </div>
-</body>
-</html>
+
+        <h2 class="section-title">Famous Places in Tamil Nadu</h2>
+        <p class="section-subtitle">From the sacred temples of Madurai to the scenic beauty of Kodaikanal and Ooty</p>
+        
+        <div class="destinations-grid" id="destinationsGrid">
+            <div class="destination-card" data-category="nature" onclick="redirectTo('Kolli hills.html')">
+                <img src="https://as2.ftcdn.net/v2/jpg/05/55/71/21/1000_F_555712196_W2xZHqABd9DuNfKO0lmFX2AZkueCc1PP.jpg" alt="Nama Aruvi Kolli Hills" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Nama Aruvi Kolli Hills</h3>
+                </div>
+                <div class="destination-info">Nature</div>
+            </div>
+
+            <div class="destination-card" data-category="temple" onclick="redirectTo('meenakshi temple.html')">
+                <img src="https://cdn2.i-scmp.com/sites/default/files/images/methode/2017/08/10/57affeea-7cbd-11e7-83c9-6be3df13972a_image_hires_140516.JPG" alt="Meenakshi Temple" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Meenakshi Temple</h3>
+                </div>
+                <div class="destination-info">Temple</div>
+            </div>
+
+            <div class="destination-card" data-category="hill-station" onclick="redirectTo('Peeck Park.html')">
+                <img src="https://th.bing.com/th/id/OIP.8K8LavCYWsMW0bThk9WlJQHaHU?rs=1&pid=ImgDetMain" alt="Peek Park Yercaud" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Peek Park Yercaud</h3>
+                </div>
+                <div class="destination-info">Hill Station</div>
+            </div>
+
+            <div class="destination-card" data-category="temple" onclick="redirectTo('ranganadhaswamy temple.html')">
+                <img src="https://2.bp.blogspot.com/-aW1ZZkarg9g/VxpHELfFrdI/AAAAAAAAe_s/954gI0sDUmo-LVbm4GbpN4bMmZXyNdZOgCLcB/s1600/DSC_0397.JPG" alt="Ranganathaswamy Temple" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Ranganathaswamy Temple</h3>
+                </div>
+                <div class="destination-info">Temple</div>
+            </div>
+
+            <div class="destination-card" data-category="hill-station" onclick="redirectTo('kodaikanal.html')">
+                <img src="https://www.go2india.in/tamilnadu/images/kodaikanal-lake-view-1.JPG" alt="Kodaikanal Lake" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Kodaikanal Lake</h3>
+                </div>
+                <div class="destination-info">Hill Station</div>
+            </div>
+
+            <div class="destination-card" data-category="heritage" onclick="redirectTo('mahabalipuram.html')">
+                <img src="https://www.tripsavvy.com/thmb/X860CJ8HL70bxCI8StY-p86j4oE=/2127x1409/filters:fill(auto,1)/shore-temple-640319518-5c27ce2146e0fb0001e9184b.jpg" alt="Mahabalipuram" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Mahabalipuram</h3>
+                </div>
+                <div class="destination-info">Heritage</div>
+            </div>
+
+            <div class="destination-card" data-category="beach" onclick="redirectTo('marina beach.html')">
+                <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/9/Marina-Beach-Aerial-view.jpg" alt="Marina Beach in Chennai" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Marina Beach in Chennai</h3>
+                </div>
+                <div class="destination-info">Beach</div>
+            </div>
+
+            <div class="destination-card" data-category="heritage" onclick="redirectTo('panbanbridge.html')">
+                <img src="https://preview.redd.it/vcbrlihllxa61.jpg?width=960&crop=smart&auto=webp&s=e760d2ee17bb0fd0e9a351cdce081210322a6397" alt="Pamban Bridge in Rameshwaram" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Pamban Bridge in Rameshwaram</h3>
+                </div>
+                <div class="destination-info">Heritage</div>
+            </div>
+
+            <div class="destination-card" data-category="heritage" onclick="redirectTo('kanchipuram.
