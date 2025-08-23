@@ -3,83 +3,624 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Famous Places in India - Transportation Booking</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <title>Explore Andhra Pradesh - Famous Places & Destinations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            box-sizing: border-box;
         }
-        header {
-            background: brown;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.6;
         }
-        .search-container {
-            margin: 20px auto;
-            text-align: center;
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .search-container input[type="text"] {
-            padding: 10px;
-            width: 300px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .search-container button {
-            padding: 10px 15px;
-            background: #28a745;
-            color: #fff;
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .back-btn {
+            background: #ff6b35;
             border: none;
-            border-radius: 5px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: white;
+            font-weight: 500;
             cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-        .search-container button:hover {
-            background: #218838;
+
+        .back-btn:hover {
+            background: #e55a2b;
+            color: white;
         }
-        .destinations {
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: white;
+            margin: -40px auto 0;
+            max-width: 800px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            padding: 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-container {
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 10px;
-        }
-        .destination {
-            background: magenta;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin: 10px;
+            background: #f8f9ff;
+            border-radius: 50px;
             overflow: hidden;
-            width: 300px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
-        .destination img {
+
+        .search-input {
+            flex: 1;
+            padding: 18px 25px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            background: transparent;
+        }
+
+        .search-btn {
+            background: #ff6b35;
+            border: none;
+            padding: 18px 35px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #e55a2b;
+        }
+
+        /* Destinations Section */
+        .destinations-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .destination-image {
             width: 100%;
-            height: 350px;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
-        .destination h3 {
-            padding: 10px;
+
+        .destination-card:hover .destination-image {
+            transform: scale(1.05);
+        }
+
+        .destination-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .destination-title {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            margin: 0;
+        }
+
+        .destination-info {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 107, 53, 0.9);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .filter-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tag {
+            background: #f0f0f0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .filter-tag:hover,
+        .filter-tag.active {
+            background: #0066cc;
+            color: white;
+        }
+
+        /* Statistics */
+        .stats-section {
+            background: #f8f9ff;
+            padding: 60px 20px;
             text-align: center;
         }
-        .img {
-            width: 300px;
-            height: 200px;
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .po {
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            width: 30px;
-            position: relative;
-            height: 20px;
+
+        .stat-item {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
-        .po {
-            width: 100%;
-            display: flex;
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 20px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h5 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ff6b35;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #ecf0f1;
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b35;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            color: #bdc3c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .search-container {
+                flex-direction: column;
+                border-radius: 12px;
+            }
+
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation for card appearance */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .destination-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .destination-card:nth-child(even) {
+            animation-delay: 0.1s;
+        }
+
+        .destination-card:nth-child(3n) {
+            animation-delay: 0.2s;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">TravelIndia</div>
+            <div class="nav-links">
+                <a href="#destinations">Destinations</a>
+                <a href="#packages">Packages</a>
+                <a href="#hotels">Hotels</a>
+                <a href="#flights">Flights</a>
+            </div>
+            <a href="javascript:history.back()" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Explore Andhra Pradesh</h1>
+        <p>Discover the most beautiful and spiritual destinations in the Land of Telugu Culture</p>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search for destinations in Andhra Pradesh..." onkeyup="searchDestinations()">
+            <button type="button" class="search-btn">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="destinations-section">
+        <div class="filter-section">
+            <div class="filter-title">Popular Categories</div>
+            <div class="filter-tags">
+                <button class="filter-tag active" onclick="filterDestinations('all')">All Places</button>
+                <button class="filter-tag" onclick="filterDestinations('temple')">Temples</button>
+                <button class="filter-tag" onclick="filterDestinations('nature')">Nature</button>
+                <button class="filter-tag" onclick="filterDestinations('beach')">Beaches</button>
+                <button class="filter-tag" onclick="filterDestinations('heritage')">Heritage</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">Famous Places in Andhra Pradesh</h2>
+        <p class="section-subtitle">From ancient temples to scenic hill stations, explore the diverse beauty of Andhra Pradesh</p>
+        
+        <div class="destinations-grid" id="destinationsGrid">
+            <div class="destination-card" data-category="nature" onclick="redirectTo('maredumilli.html')">
+                <img src="https://cdn.talesofbackpacker.com/wp-content/uploads/2022/12/Maredumilli.jpg" alt="Maredumilli" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Maredumilli</h3>
+                </div>
+                <div class="destination-info">Nature</div>
+            </div>
+
+            <div class="destination-card" data-category="beach" onclick="redirectTo('vizag beach.html')">
+                <img src="https://www.fabhotels.com/blog/wp-content/uploads/2018/10/1000x650-313.jpg" alt="Vizag Beach" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Vizag Beach</h3>
+                </div>
+                <div class="destination-info">Beach</div>
+            </div>
+
+            <div class="destination-card" data-category="temple" onclick="redirectTo('dwaraka tirumala.html')">
+                <img src="https://th.bing.com/th/id/R.d572a31dd3d7990788c12c69eab7fcf0?rik=Jta7aYcJtrbGxw&riu=http%3a%2f%2fwww.go2india.in%2fupimg%2f7760.jpg&ehk=kkoniU9xn1fujOJfQfxPSTZHAEFKGq6uB81qR4Yo6nQ%3d&risl=&pid=ImgRaw&r=0" alt="Dwaraka Tirumala" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Dwaraka Tirumala</h3>
+                </div>
+                <div class="destination-info">Temple</div>
+            </div>
+
+            <div class="destination-card" data-category="temple" onclick="redirectTo('tirupathi.html')">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/fa/e0/29/tirumala-temple.jpg?w=900&h=500&s=1" alt="Tirupathi" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Tirupathi</h3>
+                </div>
+                <div class="destination-info">Temple</div>
+            </div>
+
+            <div class="destination-card" data-category="nature" onclick="redirectTo('araku.html')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrnIuD8MDpCYHaR8DPfd1gwz9jw_KFUNEHsw&s" alt="Araku" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Araku Valley</h3>
+                </div>
+                <div class="destination-info">Nature</div>
+            </div>
+
+            <div class="destination-card" data-category="heritage" onclick="redirectTo('amaravathi.html')">
+                <img src="https://www.dailypioneer.com/uploads/2022/story/images/big/no-ambiguity--amaravati-is-the-andhra-capital-2022-01-01.jpg" alt="Amaravathi" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Amaravathi</h3>
+                </div>
+                <div class="destination-info">Heritage</div>
+            </div>
+
+            <div class="destination-card" data-category="heritage" onclick="redirectTo('gandikota.html')">
+                <img src="https://th.bing.com/th/id/OIP.g7Xr776uPf_fGtQK0Ti50gHaFj?rs=1&pid=ImgDetMain" alt="Gandikota" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Gandikota</h3>
+                </div>
+                <div class="destination-info">Heritage</div>
+            </div>
+
+            <div class="destination-card" data-category="temple" onclick="redirectTo('srisailam.html')">
+                <img src="https://pujanpujari.com/wp-content/uploads/2023/01/Srisailam-1.jpg" alt="Sri Sailam" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Sri Sailam</h3>
+                </div>
+                <div class="destination-info">Temple</div>
+            </div>
+
+            <div class="destination-card" data-category="heritage" onclick="redirectTo('kurnool.html')">
+                <img src="https://th.bing.com/th/id/R.4b5a92ef74a37d51175bc9b7b37dcd8d?rik=NSQfn6ct3Xw3pA&riu=http%3a%2f%2fwww.trawell.in%2fadmin%2fimages%2fupload%2f565594159Kurnool_Main.jpg&ehk=gVJ9CMSVO4wRCWRwn%2bFJuh458EaULDRZKAlm0ipqoXk%3d&risl=&pid=ImgRaw&r=0" alt="Kurnool" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Kurnool</h3>
+                </div>
+                <div class="destination-info">Heritage</div>
+            </div>
+
+            <div class="destination-card" data-category="nature" onclick="redirectTo('godavari.html')">
+                <img src="https://wallpapercave.com/wp/wp8705724.jpg" alt="River Godavari" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">River Godavari</h3>
+                </div>
+                <div class="destination-info">Nature</div>
+            </div>
+
+            <div class="destination-card" data-category="heritage" onclick="redirectTo('lepakshi.html')">
+                <img src="https://www.holidify.com/images/cmsuploads/compressed/6854600495_d024527b3a_b_20170912141052.jpg" alt="Lepakshi" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Lepakshi</h3>
+                </div>
+                <div class="destination-info">Heritage</div>
+            </div>
+
+            <div class="destination-card" data-category="nature" onclick="redirectTo('lambasingi.html')">
+                <img src="https://3.bp.blogspot.com/-JC0WTAEjTjA/WiXKynbQk1I/AAAAAAAAZtU/w3e9QrosfJ4PSBgNYoCQ423k-au7iYpEQCKgBGAs/s1600/IMG_20171203_061514045.jpg" alt="Lambasingi" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Lambasingi</h3>
+                </div>
+                <div class="destination-info">Nature</div>
+            </div>
+
+            <div class="destination-card" data-category="nature" onclick="redirectTo('kailasagiri.html')">
+                <img src="https://lh6.googleusercontent.com/-Nd9-3OTtkSU/TYd4S2CTAlI/AAAAAAAAAv0/y2_7RcWc5PM/s640/Picture8.jpg" alt="Kailasagiri" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Kailasagiri</h3>
+                </div>
+                <div class="destination-info">Nature</div>
+            </div>
+
+            <div class="destination-card" data-category="nature" onclick="redirectTo('konaseema.html')">
+                <img src="https://image3.mouthshut.com/images/imagesp/925881782s.jpg" alt="Konaseema" class="destination-image">
+                <div class="destination-overlay">
+                    <h3 class="destination-title">Konaseema</h3>
+                </div>
+                <div class="destination-info">Nature</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <h2 class="section-title">Andhra Pradesh by Numbers</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">14</div>
+                <div class="stat-label">Famous Destinations</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Temple Cities</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">972</div>
+                <div class="stat-label">KM Coastline</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Tourist Spots</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h5>Destinations</h5>
+                <a href="#">Tirupathi</a>
+                <a href="#">Araku Valley</a>
+                <a href="#">Vizag</a>
+                <a href="#">Srisailam</a>
+                <a href="#">Gandikota</a>
+            </div>
+            <div class="footer-section">
+                <h5>Travel Services</h5>
+                <a href="#">Flights to AP</a>
+                <a href="#">Hotels in AP</a>
+                <a href="#">Tour Packages</a>
+                <a href="#">Car Rentals</a>
+            </div>
+            <div class="footer-section">
+                <h5>Plan Your Trip</h5>
+                <a href="#">Travel Guide</a>
+                <a href="#">Best Time to Visit</a>
+                <a href="#">Local Transport</a>
+                <a href="#">Food & Culture</a>
+            </div>
+            <div class="footer-section">
+                <h5>Support</h5>
+                <a href="#">Customer Care</a>
+                <a href="#">Travel Insurance</a>
+                <a href="#">Cancellation</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TravelIndia.com. Discover the beauty of Andhra Pradesh.</p>
+        </div>
+    </footer>
+
     <script>
         // Redirect to the destination page
         function redirectTo(url) {
@@ -88,13 +629,12 @@
 
         // Filter destinations based on the search input
         function searchDestinations() {
-            var searchInput = document.getElementById("searchInput").value.toLowerCase(); // Get search input
-            var destinations = document.getElementsByClassName("destination"); // Get all destination divs
-
+            var searchInput = document.getElementById("searchInput").value.toLowerCase();
+            var destinations = document.getElementsByClassName("destination-card");
+            
             for (var i = 0; i < destinations.length; i++) {
-                var destinationName = destinations[i].getElementsByTagName("h3")[0].textContent.toLowerCase(); // Get the name of the destination
+                var destinationName = destinations[i].getElementsByTagName("h3")[0].textContent.toLowerCase();
                 
-                // If the destination name matches the search input, show it, otherwise hide it
                 if (destinationName.includes(searchInput)) {
                     destinations[i].style.display = "block";
                 } else {
@@ -102,74 +642,40 @@
                 }
             }
         }
+
+        // Filter destinations by category
+        function filterDestinations(category) {
+            var destinations = document.getElementsByClassName("destination-card");
+            var filterTags = document.getElementsByClassName("filter-tag");
+            
+            // Update active filter tag
+            for (var i = 0; i < filterTags.length; i++) {
+                filterTags[i].classList.remove("active");
+            }
+            event.target.classList.add("active");
+            
+            // Filter destinations
+            for (var i = 0; i < destinations.length; i++) {
+                if (category === 'all') {
+                    destinations[i].style.display = "block";
+                } else {
+                    var destinationCategory = destinations[i].getAttribute("data-category");
+                    if (destinationCategory === category) {
+                        destinations[i].style.display = "block";
+                    } else {
+                        destinations[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // Add smooth scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.destination-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
     </script>
-    <header>
-        <h1>Explore Famous Places in Andhra Pradesh</h1>
-    </header>
-
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search for destinations..." onkeyup="searchDestinations()">
-        <button type="button">Search</button>
-    </div>
-
-    <div class="destinations">
-        <div class="destination">
-            <img src="https://cdn.talesofbackpacker.com/wp-content/uploads/2022/12/Maredumilli.jpg" alt="MAREDUMILLI" style="width:300px" onclick="redirectTo('maredumilli.html')">
-            <h3 style="color:white">MAREDUMILLI</h3>
-        </div>
-        <div class="destination">
-            <img src="https://www.fabhotels.com/blog/wp-content/uploads/2018/10/1000x650-313.jpg" onclick="redirectTo('vizag beach.html')">
-            <h3 style="color:white">VIZAG BEACH</h3>
-        </div>
-        <div class="destination">
-            <img src="https://th.bing.com/th/id/R.d572a31dd3d7990788c12c69eab7fcf0?rik=Jta7aYcJtrbGxw&riu=http%3a%2f%2fwww.go2india.in%2fupimg%2f7760.jpg&ehk=kkoniU9xn1fujOJfQfxPSTZHAEFKGq6uB81qR4Yo6nQ%3d&risl=&pid=ImgRaw&r=0" alt="Kerala Backwaters" onclick="redirectTo('dwaraka tirumala.html')">
-            <h3 style="color:white">DWARAKA TIRUMALA</h3>
-        </div>
-        <div class="destination">
-            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/fa/e0/29/tirumala-temple.jpg?w=900&h=500&s=1" alt="Jaipur" onclick="redirectTo('tirupathi.html')">
-            <h3 style="color:white">TIRUPATHI</h3>
-        </div>
-        <div class="destination">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrnIuD8MDpCYHaR8DPfd1gwz9jw_KFUNEHsw&s" onclick="redirectTo('araku.html')">
-            <h3 style="color:white">ARAKU</h3>
-        </div>
-        <div class="destination">
-            <img src="https://www.dailypioneer.com/uploads/2022/story/images/big/no-ambiguity--amaravati-is-the-andhra-capital-2022-01-01.jpg" onclick="redirectTo('amaravathi.html')">
-            <h3 style="color:white">AMARAVATHI</h3>
-        </div>
-        <div class="destination">
-            <img src="https://th.bing.com/th/id/OIP.g7Xr776uPf_fGtQK0Ti50gHaFj?rs=1&pid=ImgDetMain" onclick="redirectTo('gandikota.html')">
-            <h3 style="color:white">GANDIKOTA</h3>
-        </div>
-        <div class="destination">
-            <img src="https://pujanpujari.com/wp-content/uploads/2023/01/Srisailam-1.jpg" onclick="redirectTo('srisailam.html')">
-            <h3 style="color:white">SRI SAILAM</h3>
-        </div>
-        <div class="destination">
-            <img src="https://th.bing.com/th/id/R.4b5a92ef74a37d51175bc9b7b37dcd8d?rik=NSQfn6ct3Xw3pA&riu=http%3a%2f%2fwww.trawell.in%2fadmin%2fimages%2fupload%2f565594159Kurnool_Main.jpg&ehk=gVJ9CMSVO4wRCWRwn%2bFJuh458EaULDRZKAlm0ipqoXk%3d&risl=&pid=ImgRaw&r=0" onclick="redirectTo('kurnool.html')">
-            <h3 style="color:white">KURNOOL</h3>
-        </div>
-        <div class="destination">
-            <img src="https://wallpapercave.com/wp/wp8705724.jpg" onclick="redirectTo('godavari.html')">
-            <h3 style="color:white">RIVER GODAVARI</h3>
-        </div>
-        <div class="destination">
-            <img src="https://www.holidify.com/images/cmsuploads/compressed/6854600495_d024527b3a_b_20170912141052.jpg" onclick="redirectTo('lepakshi.html')">
-            <h3 style="color:white">LEPAKSHI</h3>
-        </div>
-        <div class="destination">
-            <img src="https://3.bp.blogspot.com/-JC0WTAEjTjA/WiXKynbQk1I/AAAAAAAAZtU/w3e9QrosfJ4PSBgNYoCQ423k-au7iYpEQCKgBGAs/s1600/IMG_20171203_061514045.jpg" onclick="redirectTo('lambasingi.html')">
-            <h3 style="color:white">LAMBASINGHI</h3>
-        </div>
-        <div class="destination">
-            <img src="https://lh6.googleusercontent.com/-Nd9-3OTtkSU/TYd4S2CTAlI/AAAAAAAAAv0/y2_7RcWc5PM/s640/Picture8.jpg" onclick="redirectTo('kailasagiri.html')">
-            <h3 style="color:white">KAILASAGIRI</h3>
-        </div>
-        <div class="destination">
-            <img src="https://image3.mouthshut.com/images/imagesp/925881782s.jpg" onclick="redirectTo('konaseema.html')">
-            <h3 style="color:white">KONASEMA</h3>
-        </div>
-    </div>
-
 </body>
 </html>
