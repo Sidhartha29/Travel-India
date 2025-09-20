@@ -1,113 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel India Login</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-image: url('https://www.solitarytraveller.com/wp-content/uploads/2020/11/solo_travelling_banner.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            justify-content: flex-start;  
-            align-items: center;          
-            padding-left: 20px;          
+            opacity: 0.1;
+            z-index: -1;
         }
 
-        .login-container, .signup-container {
+        .auth-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             width: 100%;
-            max-width: 400px;  
-            background-color: rgba(255, 255, 255, 0.9); 
-            padding: 40px;     
-            border-radius: 10px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); 
-            backdrop-filter: blur(10px); 
+            max-width: 450px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            animation: slideInUp 0.6s ease forwards;
+            position: relative;
         }
 
-        h2 {
-            text-align: center;
+        .auth-container h2 {
             color: #333;
-            margin-bottom: 30px; 
-            font-size: 28px;     
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .input-field {
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-group input {
             width: 100%;
-            padding: 14px;       
-            margin: 12px 0;     
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 18px;      
-            background-color: #f9f9f9;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
         }
 
-        .input-field:focus {
-            border-color: #4e4376;
+        .form-group input:focus {
             outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        .login-button, .signup-button {
+        .auth-btn {
             width: 100%;
-            padding: 14px;       
-            background-color: #4e4376;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            font-size: 18px;     
             border: none;
-            border-radius: 5px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .login-button:hover, .signup-button:hover {
-            background-color: #2b5876;
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
 
-        .register-link, .login-link {
+        .auth-btn:active {
+            transform: translateY(0);
+        }
+
+        .auth-link {
             text-align: center;
-            margin-top: 25px;    
+            margin-top: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 1px solid #e1e5e9;
         }
 
-        .register-link a, .login-link a {
-            color: #007bff;
+        .auth-link p {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .auth-link a {
+            color: #667eea;
             text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
-        .register-link a:hover, .login-link a:hover {
+        .auth-link a:hover {
+            color: #764ba2;
             text-decoration: underline;
+        }
+
+        .welcome-message {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 2px solid #e1e5e9;
+        }
+
+        .welcome-message h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-message p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo .tagline {
+            color: #666;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Success/Error Messages */
+        .message {
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .message.success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+
+        .message.error {
+            background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 30px 20px;
+            }
+            
+            .auth-container h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* Animation for form appearance */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <div id="login-container" class="login-container">
-        <h2>Travel India Login</h2>
-        <form action="/login" method="POST" onsubmit="redirectTo(event, 'index1.html')">
-            <input type="email" id="email" class="input-field" placeholder="Enter your email" required>
-            <input type="password" id="password" class="input-field" placeholder="Enter your password" required>
-            <button type="submit" class="login-button">Login</button>
+    <!-- Login Container -->
+    <div id="login-container" class="auth-container">
+        <div class="logo">
+            <div class="logo-text">TravelIndia</div>
+            <div class="tagline">Discover Incredible India</div>
+        </div>
+        
+        <div class="welcome-message">
+            <h3>Welcome Back!</h3>
+            <p>Sign in to continue your journey and explore amazing destinations across India.</p>
+        </div>
+        
+        <h2>Login to Your Account</h2>
+        
+        <div id="login-message" class="message hidden"></div>
+        
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-email">Email Address</label>
+                <input type="email" id="login-email" placeholder="Enter your email address" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="auth-btn" id="login-btn">
+                <span id="login-text">Login</span>
+                <span id="login-loading" class="loading hidden"></span>
+            </button>
         </form>
-        <div class="register-link">
-            <a href="#" onclick="showSignUp()">Sign Up</a>
+        
+        <div class="auth-link">
+            <p>Don't have an account?</p>
+            <a href="#" onclick="showSignUp()">Create Account</a>
         </div>
     </div>
 
-    <div id="signup-container" class="signup-container" style="display: none;">
-        <h2>Travel India Sign Up</h2>
-        <form id="signup-form" onsubmit="signUp(event)">
-            <input type="email" id="signup-email" class="input-field" placeholder="Enter your email" required>
-            <input type="password" id="signup-password" class="input-field" placeholder="Enter your password" required>
-            <button type="submit" class="signup-button">Sign Up</button>
+    <!-- Sign Up Container -->
+    <div id="signup-container" class="auth-container hidden">
+        <div class="logo">
+            <div class="logo-text">TravelIndia</div>
+            <div class="tagline">Discover Incredible India</div>
+        </div>
+        
+        <div class="welcome-message">
+            <h3>Join TravelIndia!</h3>
+            <p>Create your account and start exploring the diverse beauty of India with us.</p>
+        </div>
+        
+        <h2>Create New Account</h2>
+        
+        <div id="signup-message" class="message hidden"></div>
+        
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="signup-email">Email Address</label>
+                <input type="email" id="signup-email" placeholder="Enter your email address" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" placeholder="Create a strong password" minlength="6" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-confirm-password">Confirm Password</label>
+                <input type="password" id="signup-confirm-password" placeholder="Confirm your password" required>
+            </div>
+            <button type="submit" class="auth-btn" id="signup-btn">
+                <span id="signup-text">Create Account</span>
+                <span id="signup-loading" class="loading hidden"></span>
+            </button>
         </form>
-        <div class="login-link">
-            <a href="#" onclick="showLogin()">Login</a>
+        
+        <div class="auth-link">
+            <p>Already have an account?</p>
+            <a href="#" onclick="showLogin()">Sign In</a>
         </div>
     </div>
 
     <script type="module">
-        
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
         import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
@@ -123,61 +337,129 @@
             measurementId: "G-4P08M66C5F"
         };
 
-        
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const database = getDatabase(app);
 
-        function redirectTo(event, url) {
+        function showMessage(containerId, message, type) {
+            const messageElement = document.getElementById(containerId);
+            messageElement.textContent = message;
+            messageElement.className = `message ${type}`;
+            messageElement.classList.remove('hidden');
+            
+            setTimeout(() => {
+                messageElement.classList.add('hidden');
+            }, 5000);
+        }
+
+        function setLoading(buttonId, loadingId, textId, isLoading) {
+            const button = document.getElementById(buttonId);
+            const loading = document.getElementById(loadingId);
+            const text = document.getElementById(textId);
+            
+            button.disabled = isLoading;
+            if (isLoading) {
+                loading.classList.remove('hidden');
+                text.classList.add('hidden');
+            } else {
+                loading.classList.add('hidden');
+                text.classList.remove('hidden');
+            }
+        }
+
+        function handleLogin(event) {
             event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            setLoading('login-btn', 'login-loading', 'login-text', true);
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
 
             const userRef = ref(database, 'users/' + email.replace('.', '_'));
             get(userRef).then((snapshot) => {
+                setLoading('login-btn', 'login-loading', 'login-text', false);
+                
                 if (snapshot.exists() && snapshot.val().password === password) {
-                    window.location.href = url;
+                    showMessage('login-message', 'Login successful! Redirecting...', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'index1.html';
+                    }, 1500);
                 } else {
-                    alert('User not found or incorrect password. Please sign up first.');
+                    showMessage('login-message', 'Invalid email or password. Please try again.', 'error');
                 }
             }).catch((error) => {
+                setLoading('login-btn', 'login-loading', 'login-text', false);
                 console.error(error);
-                alert('Error retrieving user data.');
+                showMessage('login-message', 'Login failed. Please try again.', 'error');
             });
         }
 
-        function signUp(event) {
+        function handleSignUp(event) {
             event.preventDefault();
+            setLoading('signup-btn', 'signup-loading', 'signup-text', true);
+            
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+
+            if (password !== confirmPassword) {
+                setLoading('signup-btn', 'signup-loading', 'signup-text', false);
+                showMessage('signup-message', 'Passwords do not match. Please try again.', 'error');
+                return;
+            }
 
             const userRef = ref(database, 'users/' + email.replace('.', '_'));
-            set(userRef, {
-                email: email,
-                password: password
-            }).then(() => {
-                alert('User registered successfully. Please log in.');
-                document.getElementById('signup-form').reset();
-                document.getElementById('signup-container').style.display = 'none';
-                document.getElementById('login-container').style.display = 'block';
+            
+            // Check if user already exists
+            get(userRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    setLoading('signup-btn', 'signup-loading', 'signup-text', false);
+                    showMessage('signup-message', 'Email already registered. Please login instead.', 'error');
+                    return;
+                }
+                
+                // Create new user
+                set(userRef, {
+                    email: email,
+                    password: password,
+                    createdAt: new Date().toISOString()
+                }).then(() => {
+                    setLoading('signup-btn', 'signup-loading', 'signup-text', false);
+                    showMessage('signup-message', 'Account created successfully! Please login.', 'success');
+                    document.getElementById('signup-form').reset();
+                    setTimeout(() => {
+                        showLogin();
+                    }, 2000);
+                }).catch((error) => {
+                    setLoading('signup-btn', 'signup-loading', 'signup-text', false);
+                    console.error(error);
+                    showMessage('signup-message', 'Failed to create account. Please try again.', 'error');
+                });
             }).catch((error) => {
+                setLoading('signup-btn', 'signup-loading', 'signup-text', false);
                 console.error(error);
-                alert('Error storing user data.');
+                showMessage('signup-message', 'Failed to create account. Please try again.', 'error');
             });
         }
 
         function showSignUp() {
-            document.getElementById('login-container').style.display = 'none';
-            document.getElementById('signup-container').style.display = 'block';
+            document.getElementById('login-container').classList.add('hidden');
+            document.getElementById('signup-container').classList.remove('hidden');
+            document.getElementById('login-message').classList.add('hidden');
+            document.getElementById('login-form').reset();
         }
 
         function showLogin() {
-            document.getElementById('signup-container').style.display = 'none';
-            document.getElementById('login-container').style.display = 'block';
+            document.getElementById('signup-container').classList.add('hidden');
+            document.getElementById('login-container').classList.remove('hidden');
+            document.getElementById('signup-message').classList.add('hidden');
+            document.getElementById('signup-form').reset();
         }
 
-        window.redirectTo = redirectTo;
-        window.signUp = signUp;
+        // Event listeners
+        document.getElementById('login-form').addEventListener('submit', handleLogin);
+        document.getElementById('signup-form').addEventListener('submit', handleSignUp);
+
+        // Make functions available globally
         window.showSignUp = showSignUp;
         window.showLogin = showLogin;
     </script>
