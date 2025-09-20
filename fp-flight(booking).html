@@ -6,101 +6,188 @@
     <title>Online Flight Booking</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, green, yellow);
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            padding: 20px;
         }
+
         .booking-container {
-            background: skyblue;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            width: 350px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 450px;
             text-align: center;
+            backdrop-filter: blur(10px);
         }
+
         .booking-container h2 {
-            color: black;
-            margin-bottom: 20px;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: left;
         }
+
         .form-group label {
             display: block;
-            font-weight: bold;
+            font-weight: 600;
             color: #555;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid blue;
-            border-radius: 5px;
+            margin-bottom: 8px;
             font-size: 14px;
         }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
         .submit-btn {
             width: 100%;
-            padding: 12px;
-            background-color: red;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 25px;
-            font-size: 16px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+
         .submit-btn:hover {
-            background-color: green;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
         .qr-code {
-            margin-top: 20px;
+            margin-top: 30px;
             display: flex;
             justify-content: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px dashed #667eea;
         }
+
         #pay-now {
             display: none;
-            margin-top: 10px;
-            background-color: blue;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
-            padding: 10px;
-            border-radius: 10px;
+            padding: 16px;
+            border-radius: 12px;
             cursor: pointer;
             width: 100%;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
         }
+
+        #pay-now:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+        }
+
         #booking-complete {
             display: none;
-            margin-top: 15px;
-            color: green;
-            font-weight: bold;
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            font-weight: 600;
+            border-radius: 12px;
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .booking-container {
+                padding: 30px 20px;
+            }
+            
+            .booking-container h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* Animation for form appearance */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .booking-container {
+            animation: slideInUp 0.6s ease forwards;
         }
     </style>
     <script>
         function bookFlight(event) {
-            event.preventDefault(); // Prevent form submission
-            generateQRCode(); // Generate QR code for payment
+            event.preventDefault();
+            generateQRCode();
         }
 
         function generateQRCode() {
             const passengers = parseInt(document.getElementById("passengers").value);
             const flightClass = document.getElementById("class").value;
 
-            // Define pricing per class
             let baseFare;
             if (flightClass === "economy") {
                 baseFare = 5000;
             } else if (flightClass === "business") {
                 baseFare = 7000;
             } else if (flightClass === "first") {
-                baseFare = 1000;
+                baseFare = 10000;
             }
 
-            // Calculate total amount
             const amount = baseFare * passengers;
 
             if (isNaN(amount) || amount <= 0) {
@@ -109,7 +196,7 @@
             }
 
             const qrCodeContainer = document.getElementById('qrcode');
-            qrCodeContainer.innerHTML = ''; // Clear previous QR code
+            qrCodeContainer.innerHTML = '';
 
             new QRCode(qrCodeContainer, {
                 text: `upi://pay?pa=7702496143@ybl&pn=YourName&am=${amount}&cu=INR`,
@@ -118,13 +205,12 @@
             });
 
             alert(`QR code generated for ₹${amount}! Scan to pay.`);
-
-            // Show the "Pay Now" button after generating the QR code
             document.getElementById('pay-now').style.display = 'block';
         }
 
         function completeBooking() {
             document.getElementById('booking-complete').style.display = 'block';
+            document.getElementById('pay-now').style.display = 'none';
         }
     </script>
 </head>
@@ -133,48 +219,43 @@
         <h2>Book Your Flight</h2>
         <form onsubmit="bookFlight(event)">
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
             </div>
             <div class="form-group">
-                <label for="mobile">Mobile No</label>
-                <input type="text" id="mobile" name="mobile" required>
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" required>
             </div>
             <div class="form-group">
                 <label for="departure">Departure Airport</label>
-                <input type="text" id="departure" name="departure" required>
+                <input type="text" id="departure" name="departure" placeholder="e.g., Mumbai (BOM)" required>
             </div>
             <div class="form-group">
                 <label for="destination">Destination Airport</label>
-                <input type="text" id="destination" name="destination" required>
+                <input type="text" id="destination" name="destination" placeholder="e.g., Delhi (DEL)" required>
             </div>
             <div class="form-group">
                 <label for="date">Travel Date</label>
                 <input type="date" id="date" name="date" required>
             </div>
             <div class="form-group">
-                <label for="class">Class</label>
+                <label for="class">Flight Class</label>
                 <select id="class" name="class">
-                    <option value="economy">Economy - ₹5000 per passenger</option>
-                    <option value="business">Business - ₹7000 per passenger</option>
-                    <option value="first">First Class - ₹10000 per passenger</option>
+                    <option value="economy">Economy - ₹5,000 per passenger</option>
+                    <option value="business">Business - ₹7,000 per passenger</option>
+                    <option value="first">First Class - ₹10,000 per passenger</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="passengers">Number of Passengers</label>
-                <input type="number" id="passengers" name="passengers" min="1" required>
+                <input type="number" id="passengers" name="passengers" min="1" max="9" placeholder="1" required>
             </div>
-            <button type="submit" class="submit-btn">book now</button>
+            <button type="submit" class="submit-btn">Book Flight</button>
         </form>
 
-        <!-- QR Code container -->
         <div id="qrcode" class="qr-code"></div>
-
-        <!-- Pay Now button -->
-        <button id="pay-now" onclick="completeBooking()">complete booking</button>
-
-        <!-- Booking Complete Message -->
-        <div id="booking-complete">Your booking is completed!</div>
+        <button id="pay-now" onclick="completeBooking()">Complete Booking</button>
+        <div id="booking-complete">✅ Your flight booking is confirmed!</div>
     </div>
 </body>
 </html>
