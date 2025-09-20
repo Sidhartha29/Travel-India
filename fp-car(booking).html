@@ -4,179 +4,309 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Booking</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #141E30, #243B55);
-            color: #fff;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            padding: 20px;
         }
 
-        .container {
-            background: rgba(255, 255, 255, 0.1);
+        .booking-container {
+            background: white;
             padding: 40px;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
             text-align: center;
+            backdrop-filter: blur(10px);
+            animation: slideInUp 0.6s ease forwards;
         }
 
-        .container h2 {
+        .booking-container h2 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-group {
             margin-bottom: 20px;
-            font-size: 24px;
+            text-align: left;
         }
 
-        label {
+        .form-group label {
             display: block;
-            text-align: left;
-            margin-top: 10px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
             font-size: 14px;
         }
 
-        input, select {
+        .form-group input, 
+        .form-group select {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: none;
-            border-radius: 5px;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
             font-size: 16px;
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus {
             outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        input::placeholder {
-            color: #ddd;
-        }
-
-        input[type="submit"] {
-            margin-top: 20px;
-            background: #FF6B6B;
-            cursor: pointer;
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
             font-size: 18px;
-            transition: background 0.3s;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        input[type="submit"]:hover {
-            background: #E63946;
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
         }
 
         .qr-code {
-            text-align: center;
-            margin-top: 20px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px dashed #667eea;
         }
 
-        .qr-code img {
-            width: 200px;
-            height: 200px;
-            padding-left: 100px;
-            padding-right: 100px;    
-        }
-
-        .booking-complete {
+        #pay-now {
             display: none;
-            text-align: center;
             margin-top: 20px;
-            font-size: 18px;
-            color: green;
-        }
-
-        .pay-now {
-            display: none;
-            background-color: #FF6B6B;
-            color: #fff;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
             cursor: pointer;
             width: 100%;
-            transition: background 0.3s;
-            margin-top: 15px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
         }
 
-        .pay-now:hover {
-            background-color: #E63946;
+        #pay-now:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+        }
+
+        #booking-complete {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            font-weight: 600;
+            border-radius: 12px;
+            font-size: 16px;
+        }
+
+        .car-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #e1e5e9;
+            text-align: center;
+        }
+
+        .car-info p {
+            color: #666;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .booking-container {
+                padding: 30px 20px;
+            }
+            
+            .booking-container h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* Animation for form appearance */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         function bookCar(event) {
-            event.preventDefault(); // Prevent form submission
-            generateQRCode(); // Generate QR code for payment
+            event.preventDefault();
+            
+            const pickupDate = new Date(document.getElementById('pickup-date').value);
+            const dropoffDate = new Date(document.getElementById('dropoff-date').value);
+            const carType = document.getElementById('car-type').value;
+            
+            // Calculate rental days
+            const timeDiff = dropoffDate.getTime() - pickupDate.getTime();
+            const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            
+            if (daysDiff <= 0) {
+                alert('Dropoff date must be after pickup date.');
+                return;
+            }
+            
+            // Calculate amount based on car type and days
+            let dailyRate;
+            switch(carType) {
+                case 'economy': dailyRate = 1500; break;
+                case 'compact': dailyRate = 1800; break;
+                case 'intermediate': dailyRate = 2200; break;
+                case 'standard': dailyRate = 2500; break;
+                case 'full-size': dailyRate = 3000; break;
+                case 'luxury': dailyRate = 5000; break;
+                case 'SUV': dailyRate = 4000; break;
+                case 'van': dailyRate = 3500; break;
+                default: dailyRate = 2000;
+            }
+            
+            const totalAmount = dailyRate * daysDiff;
+            generateQRCode(totalAmount, daysDiff);
         }
 
-        function generateQRCode() {
-            const amount = 2000; // Replace with the actual amount
+        function generateQRCode(amount, days) {
             const qrCodeContainer = document.getElementById('qrcode');
-            qrCodeContainer.innerHTML = ''; // Clear any existing QR code
+            qrCodeContainer.innerHTML = '';
 
             new QRCode(qrCodeContainer, {
-                text: `upi://pay?pa=7702496143@ybl&pn=Your Name&am=${amount}&cu=INR`,
+                text: `upi://pay?pa=7702496143@ybl&pn=CarRental&am=${amount}&cu=INR`,
                 width: 200,
                 height: 200
             });
 
-            alert('QR code generated! Scan to pay.');
-
-            // Enable the "Pay Now" button after QR code is generated
+            alert(`QR code generated for ₹${amount} (${days} days)! Scan to pay.`);
             document.getElementById('pay-now').style.display = 'block';
         }
 
         function completeBooking() {
             document.getElementById('booking-complete').style.display = 'block';
+            document.getElementById('pay-now').style.display = 'none';
         }
+
+        // Set minimum dates
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('pickup-date').setAttribute('min', today);
+            
+            document.getElementById('pickup-date').addEventListener('change', function() {
+                const pickupDate = this.value;
+                const nextDay = new Date(pickupDate);
+                nextDay.setDate(nextDay.getDate() + 1);
+                document.getElementById('dropoff-date').setAttribute('min', nextDay.toISOString().split('T')[0]);
+            });
+        });
     </script>
 </head>
 <body>
-    <div class="container">
-        <h2>Book Your Car Now!</h2>
+    <div class="booking-container">
+        <h2>Book Your Car</h2>
+        
+        <div class="car-info">
+            <p><strong>Rental Information</strong></p>
+            <p>24/7 Customer Support • Free Cancellation • Comprehensive Insurance</p>
+        </div>
+        
         <form onsubmit="bookCar(event)">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-
-            <label for="name">pick up location:</label>
-            <input type="text" id="name" name="name" placeholder="Enter location" required>
-
-            <label for="name">destination :</label>
-            <input type="text" id="name" name="name" placeholder="Enter destination" required>
-
-            <label for="pickup-date">Pickup Date:</label>
-            <input type="date" id="pickup-date" name="pickup-date" required>
-
-            <label for="dropoff-date">Dropoff Date:</label>
-            <input type="date" id="dropoff-date" name="dropoff-date" required>
-
-            <label for="car-type">Car Type:</label>
-            <select id="car-type" name="car-type" required>
-                <option value="economy">Economy</option>
-                <option value="compact">Compact</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="standard">Standard</option>
-                <option value="full-size">Full-size</option>
-                <option value="luxury">Luxury</option>
-                <option value="SUV">SUV</option>
-                <option value="van">Van</option>
-            </select>
-
-            <input type="submit" value="Book Now">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter 10-digit phone number" pattern="[0-9]{10}" required>
+            </div>
+            <div class="form-group">
+                <label for="pickup-location">Pickup Location</label>
+                <input type="text" id="pickup-location" name="pickup-location" placeholder="Enter pickup address" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination</label>
+                <input type="text" id="destination" name="destination" placeholder="Enter destination address" required>
+            </div>
+            <div class="form-group">
+                <label for="pickup-date">Pickup Date</label>
+                <input type="date" id="pickup-date" name="pickup-date" required>
+            </div>
+            <div class="form-group">
+                <label for="dropoff-date">Dropoff Date</label>
+                <input type="date" id="dropoff-date" name="dropoff-date" required>
+            </div>
+            <div class="form-group">
+                <label for="car-type">Car Type</label>
+                <select id="car-type" name="car-type" required>
+                    <option value="">Select car type</option>
+                    <option value="economy">Economy - ₹1,500/day</option>
+                    <option value="compact">Compact - ₹1,800/day</option>
+                    <option value="intermediate">Intermediate - ₹2,200/day</option>
+                    <option value="standard">Standard - ₹2,500/day</option>
+                    <option value="full-size">Full-size - ₹3,000/day</option>
+                    <option value="luxury">Luxury - ₹5,000/day</option>
+                    <option value="SUV">SUV - ₹4,000/day</option>
+                    <option value="van">Van - ₹3,500/day</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Book Car</button>
         </form>
+
         <div id="qrcode" class="qr-code"></div>
-        <button id="pay-now" class="pay-now" onclick="completeBooking()"> complete</button>
-        <div id="booking-complete" class="booking-complete">Your booking is completed!</div>
+        <button id="pay-now" onclick="completeBooking()">Complete Booking</button>
+        <div id="booking-complete">✅ Your car booking is confirmed!</div>
     </div>
 </body>
 </html>
