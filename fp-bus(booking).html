@@ -5,99 +5,231 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bus Ticket Booking</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: skyblue;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            padding: 20px;
         }
-        .container {
-            background: gray;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            width: 350px;
-        }
-        .container h2 {
+
+        .booking-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 450px;
             text-align: center;
-            color: blue;
+            backdrop-filter: blur(10px);
+            animation: slideInUp 0.6s ease forwards;
         }
+
+        .booking-container h2 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            text-align: left;
         }
+
         .form-group label {
             display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid red;
-            border-radius: 5px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
             font-size: 14px;
         }
-        .btn {
+
+        .form-group input, 
+        .form-group select {
             width: 100%;
-            padding: 12px;
-            background: #28a745;
-            border: none;
-            color: white;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
             font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
         }
-        .btn:hover {
-            background: #218838;
+
+        .form-group input:focus, 
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .booking-container {
+                padding: 30px 20px;
+            }
+            
+            .booking-container h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* Animation for form appearance */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Additional styling for seat selection */
+        .seat-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #e1e5e9;
+        }
+
+        .seat-info p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Success message styling */
+        .success-message {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-weight: 600;
+            display: none;
         }
     </style>
 </head>
 <body>
     <script>
         function handleFormSubmit(event) {
-            event.preventDefault(); 
-            window.location.href = 'bus seat selecting-BUS.html';
+            event.preventDefault();
+            
+            // Get form data for validation
+            const name = document.getElementById('name').value;
+            const mobile = document.getElementById('mobile').value;
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+            const date = document.getElementById('date').value;
+            const seat = document.getElementById('seat').value;
+            
+            // Simple validation
+            if (name && mobile && from && to && date && seat) {
+                // Show success message
+                document.querySelector('.success-message').style.display = 'block';
+                
+                // Simulate redirect after 2 seconds
+                setTimeout(() => {
+                    // In a real application, you would redirect to seat selection page
+                    alert('Redirecting to seat selection page...');
+                    // window.location.href = 'bus seat selecting-BUS.html';
+                }, 2000);
+            }
         }
+
+        // Set minimum date to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').setAttribute('min', today);
+        });
     </script>
-    <div class="container">
-        <h2>Bus Ticket Booking</h2>
+    <div class="booking-container">
+        <h2>Book Your Bus Ticket</h2>
         <form id="bookingForm" onsubmit="handleFormSubmit(event)">
             <div class="form-group">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
             </div>
             <div class="form-group">
-                <label for="mobile">Mobile Number:</label>
-                <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required>
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" required>
             </div>
             <div class="form-group">
-                <label for="from">Departure:</label>
-                <input type="text" id="from" name="from" required>
+                <label for="from">Departure City</label>
+                <input type="text" id="from" name="from" placeholder="e.g., Mumbai" required>
             </div>
             <div class="form-group">
-                <label for="to">Destination:</label>
-                <input type="text" id="to" name="to" required>
+                <label for="to">Destination City</label>
+                <input type="text" id="to" name="to" placeholder="e.g., Pune" required>
             </div>
             <div class="form-group">
-                <label for="date">Travel Date:</label>
+                <label for="date">Travel Date</label>
                 <input type="date" id="date" name="date" required>
             </div>
             <div class="form-group">
-                <label for="seat">Seat Number:</label>
+                <label for="seat">Preferred Seat</label>
                 <select id="seat" name="seat" required>
-                    <option value="A1">A1</option>
-                    <option value="A2">A2</option>
-                    <option value="B1">B1</option>
-                    <option value="B2">B2</option>
+                    <option value="">Select a seat</option>
+                    <option value="A1">A1 - Window (Left)</option>
+                    <option value="A2">A2 - Aisle (Left)</option>
+                    <option value="B1">B1 - Window (Right)</option>
+                    <option value="B2">B2 - Aisle (Right)</option>
+                    <option value="C1">C1 - Window (Left)</option>
+                    <option value="C2">C2 - Aisle (Left)</option>
+                    <option value="D1">D1 - Window (Right)</option>
+                    <option value="D2">D2 - Aisle (Right)</option>
                 </select>
             </div>
-            <button type="submit" class="btn" onclick="redirectTo('bus sat selecting-BUS.html')">Book Now</button>
+            
+            <div class="seat-info">
+                <p><strong>Note:</strong> Final seat assignment will be confirmed on the seat selection page. The above is just your preference.</p>
+            </div>
+            
+            <button type="submit" class="submit-btn">Book Bus Ticket</button>
         </form>
+        
+        <div class="success-message">
+            ✅ Booking details submitted successfully! Redirecting to seat selection...
+        </div>
     </div>
-
-    
 </body>
 </html>
