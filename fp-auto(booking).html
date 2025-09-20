@@ -3,178 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Bookings</title>
+    <title>Auto Booking</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color:#FFF0F5;
+            box-sizing: border-box;
         }
 
-        header {
-            background-color: #333;
-            color:white;
-            padding: 20px;
-            text-align: center;
-            font-size: 24px;
-        }
-
-        main {
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             padding: 20px;
         }
 
-        .booking-form {
-            background-color:mediumpurple;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        .booking-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             width: 100%;
-            max-width: 400px;
-        }
-
-        .booking-form h2 {
-            margin-top: 0;
+            max-width: 450px;
             text-align: center;
+            backdrop-filter: blur(10px);
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .booking-container h2 {
             color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        label {
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: white;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
 
-        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+        .form-group input, 
+        .form-group select {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid green;
-            border-radius: 5px;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
             font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
         }
 
-        input[type="submit"] {
-            background-color:aqua;
-            color: #fff;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
+        .form-group input:focus, 
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .submit-btn {
             width: 100%;
-            transition: background 0.3s;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        input[type="submit"]:hover {
-            background-color: #218838;
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
         }
 
         .qr-code {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .qr-code img {
-            width: 200px;
-            height: 200px;
-            padding-left: 100px;
-            padding-right: 100px;
-        }
-
-        .booking-complete {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-            font-size: 18px;
-            color: green;
-        }
-
-        .pay-now {
-            display: none;
-            background-color: aqua;
-            color: #fff;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
             padding: 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px dashed #667eea;
+        }
+
+        #pay-now {
+            display: none;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
             cursor: pointer;
             width: 100%;
-            transition: background 0.3s;
-            margin-top: 15px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
         }
 
-        .pay-now:hover {
-            background-color: #218838;
+        #pay-now:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+        }
+
+        #booking-complete {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            font-weight: 600;
+            border-radius: 12px;
+            font-size: 16px;
+        }
+
+        .auto-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #e1e5e9;
+            text-align: center;
+        }
+
+        .auto-info p {
+            color: #666;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .booking-container {
+                padding: 30px 20px;
+            }
+            
+            .booking-container h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* Animation for form appearance */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         function confirmBooking(event) {
-            event.preventDefault(); // Prevent form submission
-            generateQRCode(); // Generate QR code for payment
+            event.preventDefault();
+            
+            const autoType = document.getElementById("auto-type").value;
+            let amount;
+            
+            // Define amount based on auto type
+            if (autoType === "standard") {
+                amount = 199;
+            } else if (autoType === "deluxe") {
+                amount = 299;
+            } else if (autoType === "electric") {
+                amount = 349;
+            } else {
+                amount = 199; // default
+            }
+            
+            generateQRCode(amount);
         }
 
-        function generateQRCode() {
-            const amount = 199; // Replace with the actual amount
+        function generateQRCode(amount) {
             const qrCodeContainer = document.getElementById('qrcode');
-            qrCodeContainer.innerHTML = ''; // Clear any existing QR code
+            qrCodeContainer.innerHTML = '';
 
             new QRCode(qrCodeContainer, {
-                text: upi://pay?pa=7702496143@ybl&pn=Your Name&am=${amount}&cu=INR,
+                text: `upi://pay?pa=7702496143@ybl&pn=AutoBooking&am=${amount}&cu=INR`,
                 width: 200,
                 height: 200
             });
 
-            alert('QR code generated! Scan to pay.');
-
-            // Enable the "Pay Now" button after QR code is generated
+            alert(`QR code generated for ₹${amount}! Scan to pay.`);
             document.getElementById('pay-now').style.display = 'block';
         }
 
         function completeBooking() {
             document.getElementById('booking-complete').style.display = 'block';
+            document.getElementById('pay-now').style.display = 'none';
         }
+
+        // Set minimum date to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('travel-date').setAttribute('min', today);
+        });
     </script>
 </head>
 <body>
-    <header>
-        <h1>Auto Booking for Holidays</h1>
-    </header>
-    <main>
-        <section class="booking-form">
-            <h2>Book Your Auto Now!</h2>
-            <form onsubmit="confirmBooking(event)">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" required>
-
-                <label for="travel-date">Travel Date:</label>
-                <input type="date" id="travel-date" name="travel-date" required>
-
-                <label for="auto-type">Auto Type:</label>
-                <select id="auto-type" name="auto-type" required>
-                    <option value="standard">Standard</option>
-                    <option value="deluxe">Deluxe</option>
-                    <option value="electric">Electric</option>
-                </select>
-
-                <input type="submit" value="Book Now">
-            </form>
-            <div id="qrcode" class="qr-code"></div>
-            <button id="pay-now" class="pay-now" onclick="completeBooking()"> complete booking</button>
-            <div id="booking-complete" class="booking-complete">Your booking is completed!</div>
-        </section>
-    </main>
-</body>
-</html>
+    <div class="booking-container">
+        <h2>Book Your Auto</h2>
+        
+        <div class="auto-info">
+            <p><strong>Auto Rickshaw Booking</strong></p>
+            <p>Quick Travel • Local Transport • Affordable Rates</p>
+        </div>
+        
+        <form onsubmit="confirmBooking(event)">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter 10-digit phone number" pattern="[0-9]{
