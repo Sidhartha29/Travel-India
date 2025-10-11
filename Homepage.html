@@ -59,6 +59,66 @@
             color: #ff6b35;
         }
 
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Header Search Box */
+        .header-search {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 5px 15px 5px 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .header-search:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .header-search input {
+            background: none;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 6px 10px;
+            width: 200px;
+            font-size: 14px;
+            transition: width 0.3s ease;
+        }
+
+        .header-search input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .header-search input:focus {
+            width: 250px;
+        }
+
+        .header-search button {
+            background: #ff6b35;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-search button:hover {
+            background: #e55a2b;
+            transform: scale(1.05);
+        }
+
         .user-section {
             display: flex;
             align-items: center;
@@ -78,6 +138,54 @@
 
         .user-section button:hover {
             background: #e55a2b;
+        }
+
+        /* Search Suggestions Dropdown */
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            margin-top: 5px;
+            display: none;
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .search-suggestions.active {
+            display: block;
+        }
+
+        .suggestion-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+
+        .suggestion-item:hover {
+            background: #f8f9ff;
+        }
+
+        .suggestion-item i {
+            color: #0066cc;
+        }
+
+        .suggestion-category {
+            padding: 8px 15px;
+            background: #f5f5f5;
+            color: #666;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
         /* Hero Section */
@@ -351,6 +459,23 @@
                 justify-content: center;
             }
 
+            .right-section {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .header-search {
+                width: 100%;
+            }
+
+            .header-search input {
+                width: 100%;
+            }
+
+            .header-search input:focus {
+                width: 100%;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -378,9 +503,18 @@
                 <a href="#buses">Buses</a>
                 <a href="#cabs">Cabs</a>
             </div>
-            <div class="user-section">
-                <span>Hi, Guest</span>
-                <button onclick="logout()">Logout</button>
+            <div class="right-section">
+                <div class="header-search" style="position: relative;">
+                    <input type="text" id="headerSearchInput" placeholder="Search places..." onkeyup="handleSearch(event)">
+                    <button onclick="performSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+                <div class="user-section">
+                    <span>Hi, Guest</span>
+                    <button onclick="logout()">Logout</button>
+                </div>
             </div>
         </nav>
     </header>
@@ -557,6 +691,103 @@
     </footer>
 
     <script>
+        // Sample data for search suggestions
+        const searchData = {
+            popular: [
+                { name: 'Mumbai', type: 'city', state: 'Maharashtra' },
+                { name: 'Delhi', type: 'city', state: 'Delhi' },
+                { name: 'Bangalore', type: 'city', state: 'Karnataka' },
+                { name: 'Hyderabad', type: 'city', state: 'Telangana' },
+                { name: 'Chennai', type: 'city', state: 'Tamil Nadu' },
+                { name: 'Kolkata', type: 'city', state: 'West Bengal' },
+                { name: 'Goa', type: 'state', state: 'Goa' },
+                { name: 'Kerala', type: 'state', state: 'Kerala' },
+                { name: 'Rajasthan', type: 'state', state: 'Rajasthan' }
+            ],
+            tourist: [
+                { name: 'Taj Mahal', type: 'monument', state: 'Uttar Pradesh' },
+                { name: 'Red Fort', type: 'monument', state: 'Delhi' },
+                { name: 'Gateway of India', type: 'monument', state: 'Maharashtra' },
+                { name: 'Munnar', type: 'hill station', state: 'Kerala' },
+                { name: 'Manali', type: 'hill station', state: 'Himachal Pradesh' },
+                { name: 'Ooty', type: 'hill station', state: 'Tamil Nadu' },
+                { name: 'Varanasi', type: 'city', state: 'Uttar Pradesh' },
+                { name: 'Jaipur', type: 'city', state: 'Rajasthan' },
+                { name: 'Agra', type: 'city', state: 'Uttar Pradesh' }
+            ]
+        };
+
+        function handleSearch(event) {
+            const searchInput = event.target;
+            const searchValue = searchInput.value.toLowerCase();
+            const suggestionsDiv = document.getElementById('searchSuggestions');
+            
+            if (searchValue.length < 2) {
+                suggestionsDiv.classList.remove('active');
+                return;
+            }
+            
+            // Filter suggestions
+            const allPlaces = [...searchData.popular, ...searchData.tourist];
+            const filtered = allPlaces.filter(place => 
+                place.name.toLowerCase().includes(searchValue) ||
+                place.state.toLowerCase().includes(searchValue)
+            );
+            
+            // Display suggestions
+            if (filtered.length > 0) {
+                let html = '<div class="suggestion-category">Suggested Places</div>';
+                filtered.slice(0, 5).forEach(place => {
+                    let icon = 'fa-map-marker-alt';
+                    if (place.type === 'monument') icon = 'fa-monument';
+                    else if (place.type === 'hill station') icon = 'fa-mountain';
+                    else if (place.type === 'state') icon = 'fa-map';
+                    
+                    html += `
+                        <div class="suggestion-item" onclick="selectPlace('${place.name}')">
+                            <i class="fas ${icon}"></i>
+                            <div>
+                                <strong>${place.name}</strong>
+                                <small style="color: #666; margin-left: 10px;">${place.state}</small>
+                            </div>
+                        </div>
+                    `;
+                });
+                suggestionsDiv.innerHTML = html;
+                suggestionsDiv.classList.add('active');
+            } else {
+                suggestionsDiv.classList.remove('active');
+            }
+            
+            // Handle Enter key
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        }
+
+        function selectPlace(placeName) {
+            document.getElementById('headerSearchInput').value = placeName;
+            document.getElementById('searchSuggestions').classList.remove('active');
+            performSearch();
+        }
+
+        function performSearch() {
+            const searchValue = document.getElementById('headerSearchInput').value;
+            if (searchValue.trim()) {
+                alert(`Searching for: ${searchValue}`);
+                // Here you would typically redirect to a search results page or filter content
+                // window.location.href = `search.html?q=${encodeURIComponent(searchValue)}`;
+            }
+        }
+
+        // Close suggestions when clicking outside
+        document.addEventListener('click', function(event) {
+            const searchBox = document.querySelector('.header-search');
+            if (!searchBox.contains(event.target)) {
+                document.getElementById('searchSuggestions').classList.remove('active');
+            }
+        });
+
         function redirectTo(url) {
             window.location.href = url;
         }
