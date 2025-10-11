@@ -3,82 +3,465 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peacock Park, Yercaud</title>
+    <title>Peacock Park, Yercaud - Tamil Nadu Tourism</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #e0f7fa;
-            text-align: center;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: lightcoral;
-            padding: 30px;
-            box-shadow: 0 0 15px rgba(0, 0, 255, 0.3);
-            border-radius: 10px;
-            border: 2px solid green;
-        }
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            border: 2px solid lightblue;
-        }
-        p {
-            text-align: justify;
-            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
             line-height: 1.6;
         }
-        h1, h2 {
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .back-btn {
+            background: #ff6b35;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: #e55a2b;
             color: white;
         }
-        h1 {
-            font-size: 36px;
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
         }
-        h2 {
-            font-size: 28px;
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
-        .map-container {
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Content Section */
+        .content-section {
+            max-width: 1200px;
+            margin: -40px auto 0;
+            padding: 0 20px 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .main-image-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .main-image-card img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .info-card h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #ff6b35;
+            display: inline-block;
+        }
+
+        .info-card p {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: #f8f9ff;
+            padding: 60px 20px;
+        }
+
+        .features-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin-top: 30px;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
         }
 
-        iframe {
-            width: 100%;
-            height: 450px;
-            border: 0;
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Best Time Section */
+        .best-time-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .best-time-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .best-time-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .best-time-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .season-tags {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .season-tag {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Map Section */
+        .map-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .map-card {
+            background: white;
             border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .map-header {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .map-header h2 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .map-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 0;
+            color: #bdc3c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .main-image-card img {
+                height: 300px;
+            }
+
+            .info-card {
+                padding: 25px;
+            }
+
+            .info-card h2 {
+                font-size: 1.5rem;
+            }
+
+            .best-time-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-card {
+            animation: fadeInUp 0.6s ease forwards;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Peacock Park, Yercaud</h1>
-        <img src="https://i.ytimg.com/vi/s4WOcGmgwU4/hqdefault.jpg" alt="Peacock Park Yercaud">
-        <p>Peacock Park is a charming attraction in Yercaud, Tamil Nadu, known for its vibrant population of peacocks that roam freely in a lush, green environment. This park is a perfect place for nature lovers, photographers, and wildlife enthusiasts to witness the beauty of these magnificent birds in their natural habitat.</p>
-        
-        <h2>History</h2>
-        <p>Established to conserve the peacock population in the region, Peacock Park has grown into a popular tourist spot over the years. It serves as a sanctuary for these majestic birds and offers visitors an opportunity to observe their graceful dance and colorful plumage up close.</p>
-        
-        <h2>Location & Features</h2>
-        <p>Located amidst the serene hills of Yercaud, the park provides a peaceful retreat for visitors. The cool climate, fresh air, and scenic surroundings make it an ideal destination for relaxation and bird-watching. The park also features walking trails, picnic spots, and observation points for visitors to enjoy the breathtaking views.</p>
-        
-        <h2>Best Time to Visit</h2>
-        <p>The best time to visit Peacock Park is during the early morning or late afternoon when the peacocks are most active. The monsoon and winter seasons (June to February) offer the most picturesque views, with lush greenery and mist-covered landscapes.</p>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">TravelIndia</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#location">Location</a>
+            </div>
+            <a href="javascript:history.back()" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back
+            </a>
+        </nav>
+    </header>
 
-        <!-- Location Map Section -->
-        <div class="map-container">
-            <h2>Location of Peacock Park, Yercaud</h2>
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.461274346238!2d78.21144201467539!3d11.777178591224036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bad6c8778888881%3A0xd9e6b4b4559c3e6!2sPeacock%20Park%2C%20Yercaud!5e0!3m2!1sen!2sin!4v1673024557643!5m2!1sen!2sin" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Peacock Park, Yercaud</h1>
+        <p>A sanctuary of natural beauty and vibrant wildlife</p>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="main-image-card">
+            <img src="https://i.ytimg.com/vi/s4WOcGmgwU4/hqdefault.jpg" alt="Peacock Park Yercaud">
         </div>
-    </div>
+
+        <div class="content-grid">
+            <div class="info-card" id="about">
+                <h2>About Peacock Park</h2>
+                <p>Peacock Park is a charming attraction in Yercaud, Tamil Nadu, known for its vibrant population of peacocks that roam freely in a lush, green environment. This park is a perfect place for nature lovers, photographers, and wildlife enthusiasts to witness the beauty of these magnificent birds in their natural habitat.</p>
+            </div>
+
+            <div class="info-card">
+                <h2>History</h2>
+                <p>Established to conserve the peacock population in the region, Peacock Park has grown into a popular tourist spot over the years. It serves as a sanctuary for these majestic birds and offers visitors an opportunity to observe their graceful dance and colorful plumage up close.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="features-content">
+            <h2 class="section-title">Park Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-feather"></i>
+                    <h3>Peacock Watching</h3>
+                    <p>Observe vibrant peacocks roaming freely in their natural habitat</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-camera"></i>
+                    <h3>Photography</h3>
+                    <p>Perfect spot for wildlife and nature photography enthusiasts</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-walking"></i>
+                    <h3>Walking Trails</h3>
+                    <p>Scenic walking paths through lush greenery and fresh air</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cool Climate</h3>
+                    <p>Pleasant weather and serene surroundings in the Yercaud hills</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-tree"></i>
+                    <h3>Picnic Spots</h3>
+                    <p>Ideal locations for family picnics and relaxation</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-binoculars"></i>
+                    <h3>Observation Points</h3>
+                    <p>Breathtaking viewpoints to enjoy the natural landscape</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Time Section -->
+    <section class="best-time-section">
+        <div class="best-time-content">
+            <h2>Best Time to Visit</h2>
+            <p>The best time to visit Peacock Park is during the early morning or late afternoon when the peacocks are most active. The monsoon and winter seasons offer the most picturesque views, with lush greenery and mist-covered landscapes.</p>
+            <div class="season-tags">
+                <span class="season-tag">June - February</span>
+                <span class="season-tag">Early Morning</span>
+                <span class="season-tag">Late Afternoon</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section" id="location">
+        <div class="map-card">
+            <div class="map-header">
+                <h2>Location of Peacock Park, Yercaud</h2>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.461274346238!2d78.21144201467539!3d11.777178591224036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bad6c8778888881%3A0xd9e6b4b4559c3e6!2sPeacock%20Park%2C%20Yercaud!5e0!3m2!1sen!2sin!4v1673024557643!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 TravelIndia.com. Discover the beauty of Tamil Nadu.</p>
+    </footer>
 </body>
 </html>
