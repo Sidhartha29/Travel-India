@@ -3,73 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kodaikanal</title>
+    <title>Kodaikanal - Travel India</title>
     <style>
-        /* General Body Styling */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f4f8;
-            color: #333;
+        * {
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            box-sizing: border-box;
         }
 
-        /* Container Styling */
-        .container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 30px;
-            background-color: #fff;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .container:hover {
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-10px);
-        }
-
-        /* Header Styling */
-        h1 {
-            color: #004d40;
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        /* Image Styling */
-        .kodaikanal-image {
-            width: 100%;
-            max-width: 800px;
-            height: auto;
-            border-radius: 12px;
-            margin: 20px 0;
-            border: 4px solid #004d40;
-        }
-
-        /* Paragraph Styling */
-        p {
-            color: #555;
-            text-align: justify;
-            font-size: 16px;
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
-
-        /* Flex container for map and guide details */
-        .map-guide-container {
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
             display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
         }
 
-        .map-container, .guide-details {
-            width: 48%;
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .image-section {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-section {
+            margin-bottom: 30px;
+        }
+
+        .text-section p {
+            text-align: justify;
+            line-height: 1.8;
+            color: #555;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+
+        .guide-map-section {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .guide-details {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #e1e5e9;
+        }
+
+        .guide-details h3 {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .guide-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .guide-details li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .guide-details strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .map-container {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         .map-container iframe {
@@ -78,91 +130,71 @@
             border: none;
         }
 
-        .guide-details {
-            background-color: #ecf0f1;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .guide-details h5 {
-            color: #2c3e50;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .guide-details ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .guide-details li {
-            margin-bottom: 10px;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .map-guide-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .map-container, .guide-details {
-                width: 100%;
+            .container {
+                padding: 25px;
             }
 
             h1 {
-                font-size: 28px;
+                font-size: 2rem;
             }
 
-            .kodaikanal-image {
-                width: 100%;
-                max-width: 100%;
+            .image-section img {
+                height: 300px;
             }
 
-            p {
-                font-size: 14px;
+            .guide-map-section {
+                flex-direction: column;
+            }
+
+            .text-section p {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Kodaikanal</h1>
-        <img src="https://th.bing.com/th/id/OIP.dJ6h2o6dAWoAN89d2Sjq6QHaDm?rs=1&pid=ImgDetMain" alt="Kodaikanal Lake" class="kodaikanal-image"> <!-- Image added -->
-        <p>
-            Kodaikanal, often referred to as the "Princess of Hill Stations," is a picturesque hill station located in the Western Ghats of Tamil Nadu, India. Nestled amidst lush forests, beautiful lakes, and serene valleys, Kodaikanal is a popular retreat for nature lovers and adventure seekers.
-        </p>
-        <p>
-            The town is known for its pleasant climate, which remains cool throughout the year, making it an ideal escape from the heat of the plains. Some of the top attractions in Kodaikanal include the stunning Kodaikanal Lake, Coaker's Walk, Bryant Park, and the famous Pillar Rocks.
-        </p>
-        <p>
-            Kodaikanal is also famous for its diverse flora and fauna, with several trekking routes and nature trails offering breathtaking views of the surrounding hills and valleys. The town is also home to several waterfalls, such as the Silver Cascade Falls and Bear Shola Falls, which add to the area's natural beauty.
-        </p>
-        <p>
-            Kodaikanal has a rich history, with its development as a hill station dating back to the British colonial period. It remains an important tourist destination in South India, attracting visitors from all over the world who come to experience its tranquility, scenic landscapes, and vibrant culture.
-        </p>
-    </div>
-
-    <!-- Flex container for map and guide details side by side -->
-    <div class="map-guide-container">
-        <!-- Map Section -->
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3775.21127016451!2d77.48379791469715!3d10.234401643221312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04ee053a158bbb%3A0xa871f7886f34b8d1!2sKodaikanal%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1679480598191!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+        <div class="header">
+            <h1>Kodaikanal</h1>
         </div>
 
-        <!-- Guide Details Section -->
-        <div class="guide-details">
-            <h5>Guide Details</h5>
-            <ul>
-                <li><strong>Name:</strong> Ramesh Kumar</li>
-                <li><strong>Location:</strong> Kodaikanal, Tamil Nadu</li>
-                <li><strong>Opening Hours:</strong> 9:00 AM - 6:00 PM</li>
-                <li><strong>Contact Info:</strong> 987-654-3210</li>
-                <li><strong>Best Time to Visit:</strong> March to June (Summer season)</li>
-                <li><strong>Guided Tours:</strong> Available in English, Tamil, and Hindi. Booking recommended.</li>
-                <li><strong>Nearby Attractions:</strong> Kodaikanal Lake, Coaker's Walk, Bryant Park, Silver Cascade Falls, and Bear Shola Falls</li>
-            </ul>
+        <div class="image-section">
+            <img src="https://th.bing.com/th/id/OIP.dJ6h2o6dAWoAN89d2Sjq6QHaDm?rs=1&pid=ImgDetMain" alt="Kodaikanal Lake">
+        </div>
+
+        <div class="text-section">
+            <p>
+                Kodaikanal, often referred to as the "Princess of Hill Stations," is a picturesque hill station located in the Western Ghats of Tamil Nadu, India. Nestled amidst lush forests, beautiful lakes, and serene valleys, Kodaikanal is a popular retreat for nature lovers and adventure seekers.
+            </p>
+            <p>
+                The town is known for its pleasant climate, which remains cool throughout the year, making it an ideal escape from the heat of the plains. Some of the top attractions in Kodaikanal include the stunning Kodaikanal Lake, Coaker's Walk, Bryant Park, and the famous Pillar Rocks.
+            </p>
+            <p>
+                Kodaikanal is also famous for its diverse flora and fauna, with several trekking routes and nature trails offering breathtaking views of the surrounding hills and valleys. The town is also home to several waterfalls, such as the Silver Cascade Falls and Bear Shola Falls, which add to the area's natural beauty.
+            </p>
+            <p>
+                Kodaikanal has a rich history, with its development as a hill station dating back to the British colonial period. It remains an important tourist destination in South India, attracting visitors from all over the world who come to experience its tranquility, scenic landscapes, and vibrant culture.
+            </p>
+        </div>
+
+        <div class="guide-map-section">
+            <div class="guide-details">
+                <h3>Guide Details</h3>
+                <ul>
+                    <li><strong>Name:</strong> Ramesh Kumar</li>
+                    <li><strong>Location:</strong> Kodaikanal, Tamil Nadu</li>
+                    <li><strong>Opening Hours:</strong> 9:00 AM - 6:00 PM</li>
+                    <li><strong>Contact Info:</strong> +91-987-654-3210</li>
+                    <li><strong>Best Time to Visit:</strong> March to June (Summer season)</li>
+                    <li><strong>Guided Tours:</strong> Available in English, Tamil, and Hindi. Booking recommended.</li>
+                    <li><strong>Nearby Attractions:</strong> Kodaikanal Lake, Coaker's Walk, Bryant Park, Silver Cascade Falls, Bear Shola Falls</li>
+                </ul>
+            </div>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3775.21127016451!2d77.48379791469715!3d10.234401643221312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04ee053a158bbb%3A0xa871f7886f34b8d1!2sKodaikanal%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1679480598191!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+            </div>
         </div>
     </div>
 </body>
