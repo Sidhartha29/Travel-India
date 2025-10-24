@@ -3,77 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golconda Fort, Hyderabad</title>
+    <title>Golconda Fort - Travel India</title>
     <style>
-        body {
-            font-family: 'Verdana', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #8B4513, #DEB887); /* Earthy brown and tan tones for the fort's heritage */
-            color: #FFFFFF;
-            text-align: center;
+            box-sizing: border-box;
         }
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.9); /* Slight white tint for text contrast */
-            border-radius: 12px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://www.solitarytraveller.com/wp-content/uploads/2020/11/solo_travelling_banner.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
         .header {
             text-align: center;
             margin-bottom: 30px;
+            animation: fadeInDown 0.6s ease;
         }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            color: white;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
         h1 {
-            color: #FFD700; /* Golden hue representing the historical value */
-            font-size: 36px;
-            text-shadow: 2px 2px 6px rgba(255, 215, 0, 0.6); /* Glowing golden effect */
+            font-size: 2.4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
         }
+
         .image-container {
             width: 100%;
             margin-bottom: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
+
         .image-container img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+            max-height: 500px;
             object-fit: cover;
+            transition: transform 0.3s ease;
         }
-        .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+
+        .image-container:hover img {
+            transform: scale(1.05);
         }
+
         .content p {
             text-align: justify;
             line-height: 1.8;
-            font-size: 18px;
-            color: #333333; /* Elegant contrast for readability */
-            max-width: 900px;
+            font-size: 1.1rem;
+            color: #555;
             margin-bottom: 20px;
         }
-        .image-gallery {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            margin-top: 30px;
-        }
-        .image-gallery img {
-            width: 48%;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            object-fit: cover;
+
+        .content p strong {
+            color: #667eea;
+            font-weight: 600;
         }
 
-        /* Map Styling */
         .map-container {
-            margin-top: 30px;
+            margin-top: 40px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e1e5e9;
         }
 
         .map-container iframe {
@@ -81,25 +123,90 @@
             height: 400px;
             border: none;
         }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .map-container iframe {
+                height: 300px;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="logo-text">TravelIndia</div>
+        <div class="tagline">Discover Incredible India</div>
+    </div>
+
     <div class="container">
-        <div class="header">
-            <h1>Golconda Fort, Hyderabad</h1>
+        <div class="page-title">
+            <h1>🏰 Golconda Fort, Hyderabad</h1>
         </div>
+        
         <div class="image-container">
             <img src="https://assets-news.housing.com/news/wp-content/uploads/2020/11/02184143/Everything-you-need-to-know-about-Golconda-Fort-FB-1200x700-compressed.jpg" alt="Golconda Fort">
         </div>
+        
         <div class="content">
             <p><strong>Golconda Fort</strong> is one of the most prominent historical landmarks of <strong>Hyderabad</strong>. Known for its <strong>majestic structure</strong> and <strong>rich history</strong>, it was once the capital of the <strong>Qutb Shahi dynasty</strong>. The fort was built in the 16th century and boasts impressive <strong>architecture</strong> and a strategic location on a hilltop.</p>
-            <p>The fort is famous for its <strong>acoustics</strong>, where a clap near the entrance can be heard at the <strong>highest point</strong> of the fort, which was used as an alert system in the past. The <strong>fort’s walls</strong>, <strong>gates</strong>, and <strong>palaces</strong> are a testament to its grandeur and the era it represents.</p>
+            
+            <p>The fort is famous for its <strong>acoustics</strong>, where a clap near the entrance can be heard at the <strong>highest point</strong> of the fort, which was used as an alert system in the past. The <strong>fort's walls</strong>, <strong>gates</strong>, and <strong>palaces</strong> are a testament to its grandeur and the era it represents.</p>
+            
             <p>Golconda Fort also offers a <strong>panoramic view of Hyderabad</strong>, including the <strong>Charminar</strong> and <strong>Hussain Sagar Lake</strong>. Visitors to the fort can explore the <strong>ancient wells</strong>, <strong>barracks</strong>, and <strong>breathtaking architecture</strong> while getting immersed in the history of this majestic structure.</p>
         </div>
 
-        <!-- Map Container -->
         <div class="map-container">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.1955030211067!2d78.40192291529097!3d17.383289209251672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2baf745e9ebcd%3A0xfaf3bfa9a3b94c2f!2sGolconda%20Fort!5e0!3m2!1sen!2sin!4v1685056087679!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index1.html" class="back-button">← Back to Home</a>
         </div>
     </div>
 </body>
