@@ -3,36 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ajanta Caves</title>
+  <title>Ajanta Caves - Travel India</title>
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      background: #f0f2f5;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://www.solitarytraveller.com/wp-content/uploads/2020/11/solo_travelling_banner.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeInDown 0.6s ease;
+    }
+
+    .logo-text {
+      font-size: 32px;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .tagline {
+      color: white;
+      font-size: 14px;
+      opacity: 0.9;
+      margin-top: 5px;
     }
 
     .container {
       max-width: 1200px;
-      margin: 40px auto;
+      margin: 0 auto;
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      animation: slideInUp 0.6s ease forwards;
+    }
+
+    .content-wrapper {
       display: flex;
       flex-wrap: wrap;
-      overflow: hidden;
     }
 
     .image-section {
       flex: 1;
       min-width: 300px;
+      position: relative;
+      overflow: hidden;
     }
 
     .image-section img {
       width: 100%;
       height: 100%;
+      min-height: 400px;
       object-fit: cover;
       display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .image-section:hover img {
+      transform: scale(1.05);
     }
 
     .text-section {
@@ -43,14 +97,16 @@
 
     h1 {
       font-size: 2.4rem;
-      color: #2c3e50;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       margin-bottom: 20px;
-      text-align: left;
+      font-weight: 700;
     }
 
     p {
       font-size: 1.1rem;
-      color: #444;
+      color: #555;
       line-height: 1.8;
       margin-bottom: 20px;
       text-align: justify;
@@ -58,82 +114,155 @@
 
     .guide-details {
       width: 100%;
-      background: #f7f9fb;
-      padding: 30px;
+      background: #f8f9fa;
+      padding: 40px;
       box-sizing: border-box;
-      border-top: 1px solid #ddd;
+      border-top: 2px solid #e1e5e9;
     }
 
     .guide-details h5 {
-      font-size: 1.4rem;
-      color: #2c3e50;
-      margin-bottom: 1rem;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
     }
 
     .guide-details ul {
       list-style: none;
       padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
     }
 
     .guide-details li {
       font-size: 1rem;
-      margin-bottom: 8px;
+      padding: 12px 15px;
+      background: white;
+      border-radius: 8px;
       color: #555;
+      transition: all 0.3s ease;
+      border-left: 4px solid #667eea;
+    }
+
+    .guide-details li:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+    }
+
+    .guide-details li strong {
+      color: #667eea;
+      font-weight: 600;
     }
 
     .map-container {
       width: 100%;
-      height: 250px;
-      margin-top: 20px;
-      border-radius: 10px;
+      height: 350px;
+      margin-top: 25px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border: 3px solid #e1e5e9;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin: 30px;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
     }
 
     @media (max-width: 900px) {
-      .container {
+      .content-wrapper {
         flex-direction: column;
       }
 
       .text-section {
-        padding: 20px;
+        padding: 30px 20px;
       }
 
       h1 {
         text-align: center;
+        font-size: 2rem;
       }
 
       .guide-details {
-        padding: 20px;
-        border-top: none;
-        border-radius: 0 0 16px 16px;
+        padding: 30px 20px;
+      }
+
+      .guide-details ul {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   </style>
 </head>
 <body>
+  <div class="header">
+    <div class="logo-text">TravelIndia</div>
+    <div class="tagline">Discover Incredible India</div>
+  </div>
+
   <div class="container">
-    <div class="image-section">
-      <img src="https://www.adotrip.com/public/images/areas/5f04898f9a9dd-Ajanta%20Caves%20Tours.jpg" alt="Ajanta Caves"/>
+    <div class="content-wrapper">
+      <div class="image-section">
+        <img src="https://www.adotrip.com/public/images/areas/5f04898f9a9dd-Ajanta%20Caves%20Tours.jpg" alt="Ajanta Caves"/>
+      </div>
+      <div class="text-section">
+        <h1>🏛️ Ajanta Caves</h1>
+        <p>
+          The Ajanta Caves are 30 rock-cut Buddhist cave monuments dating from the second century BCE to about 480 CE in Aurangabad district of Maharashtra, India. Ajanta Caves are a UNESCO World Heritage Site and are regarded as masterpieces of Buddhist religious art.
+        </p>
+        <p>
+          The caves include paintings and rock-cut sculptures that are among the finest surviving examples of ancient Indian art. They feature monasteries and worship halls, and were a monsoon retreat for monks and a stopover for ancient travelers.
+        </p>
+      </div>
     </div>
-    <div class="text-section">
-      <h1>Ajanta Caves</h1>
-      <p>
-        The Ajanta Caves are 30 rock-cut Buddhist cave monuments dating from the second century BCE to about 480 CE in Aurangabad district of Maharashtra, India. Ajanta Caves are a UNESCO World Heritage Site and are regarded as masterpieces of Buddhist religious art.
-      </p>
-      <p>
-        The caves include paintings and rock-cut sculptures that are among the finest surviving examples of ancient Indian art. They feature monasteries and worship halls, and were a monsoon retreat for monks and a stopover for ancient travelers.
-      </p>
-    </div>
+    
     <div class="guide-details">
-      <h5>Guide Details</h5>
+      <h5>📋 Guide Details</h5>
       <ul>
-        <li><strong>Name:</strong> Rajesh Singh</li>
+        <li><strong>Guide Name:</strong> Rajesh Singh</li>
         <li><strong>Location:</strong> Ajanta Caves, Aurangabad, Maharashtra</li>
         <li><strong>Opening Hours:</strong> 9:00 AM - 6:00 PM</li>
         <li><strong>Contact Info:</strong> 932-123-4567</li>
         <li><strong>Best Time to Visit:</strong> October to March (Winter season)</li>
-        <li><strong>Guided Tours:</strong> Available in English, Hindi, and Marathi. Booking recommended</li>
+        <li><strong>Guided Tours:</strong> Available in English, Hindi, and Marathi</li>
+        <li><strong>Booking:</strong> Advance booking recommended</li>
         <li><strong>Nearby Attractions:</strong> Ellora Caves, Bibi Ka Maqbara, Daulatabad Fort</li>
       </ul>
       <div class="map-container">
@@ -147,6 +276,10 @@
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7521.004889805871!2d75.7030!3d20.5522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd97098a25f4b5d%3A0x952b6f178eeb7a47!2sAjanta%20Caves!5e0!3m2!1sen!2sin!4v1618315277224!5m2!1sen!2sin">
         </iframe>
       </div>
+    </div>
+    
+    <div style="text-align: center;">
+      <a href="index1.html" class="back-button">← Back to Home</a>
     </div>
   </div>
 </body>
