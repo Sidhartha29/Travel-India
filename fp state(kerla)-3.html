@@ -3,124 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Famous Places in India - Transportation Booking</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <title>Explore Kerala - Travel India</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            box-sizing: border-box;
         }
-        header {
-            background:indianred;
-            color: #fff;
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             padding: 20px;
-            text-align: center;
+            position: relative;
         }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://www.solitarytraveller.com/wp-content/uploads/2020/11/solo_travelling_banner.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            color: white;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        header {
+            background: white;
+            color: #667eea;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            animation: slideInUp 0.6s ease;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
         .search-container {
-            margin: 20px auto;
+            margin: 30px auto;
             text-align: center;
+            max-width: 600px;
         }
+
         .search-container input[type="text"] {
-            padding: 10px;
-            width: 300px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 15px 20px;
+            width: 70%;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px 0 0 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
         }
+
+        .search-container input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
         .search-container button {
-            padding: 10px 15px;
-            background:black;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 0 12px 12px 0;
             cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
         }
+
         .search-container button:hover {
-            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
+
         .destinations {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
         }
+
         .destination {
-            background:indianred;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin: 10px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            width: 300px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeIn 0.6s ease;
         }
+
+        .destination:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+        }
+
         .destination img {
             width: 100%;
-            height: 350px;
-            
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
+
+        .destination:hover img {
+            transform: scale(1.1);
+        }
+
         .destination h3 {
-            padding: 10px;
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 30px auto;
+            padding: 12px 30px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
             text-align: center;
         }
-        .img{
-          width: 300px;
-          height:200px
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .destinations {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            .search-container input[type="text"] {
+                width: 60%;
+                font-size: 14px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
+    <div class="page-header">
+        <div class="logo-text">TravelIndia</div>
+        <div class="tagline">Discover Incredible India</div>
+    </div>
+
+    <header>
+        <h1>🌴 Explore Famous Places in Kerala</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" placeholder="Search for destinations...">
+        <button type="button">Search</button>
+    </div>
+
+    <div class="destinations">
+        <div class="destination" onclick="window.location.href='munnar.html'">
+            <img src="https://tripnstay.com/wp-content/uploads/2019/02/Kannan-Devan-Hills.jpg" alt="Munnar">
+            <h3>🏔️ Munnar</h3>
+        </div>
+        
+        <div class="destination" onclick="window.location.href='allipery.html'">
+            <img src="https://pyt-blogs.imgix.net/2020/07/abhishek-prasad-ii0oWs5abCo-unsplash-scaled.jpg?auto=format&ixlib=php-3.3.0" alt="Alleppey">
+            <h3>🚣 Alleppey</h3>
+        </div>
+        
+        <div class="destination" onclick="window.location.href='sabarimala.html'">
+            <img src="https://th.bing.com/th/id/OIP.XcMGek2eCNXOAUvROlnYYAHaEK?rs=1&pid=ImgDetMain" alt="Sabarimala">
+            <h3>🛕 Sabarimala</h3>
+        </div>
+        
+        <div class="destination" onclick="window.location.href='kochi.html'">
+            <img src="https://static.toiimg.com/photo/48251977/.jpg" alt="Kochi">
+            <h3>🌊 Kochi</h3>
+        </div>
+        
+        <div class="destination" onclick="window.location.href='tirssur.html'">
+            <img src="https://www.nativeplanet.com/img/2016/08/3vadakkunnathan-26-1472194050.jpg" alt="Thrissur">
+            <h3>🎭 Thrissur</h3>
+        </div>
+        
+        <div class="destination" onclick="window.location.href='padmanabaswami.html'">
+            <img src="https://1.bp.blogspot.com/-H8WQZjCV1i0/YBKhpBXqXPI/AAAAAAAADxE/XsdqDZfaNc0q7v3UZ2K_3bNtP0v66nmCACLcBGAsYHQ/s1024/padma.jpg" alt="Padmanabhaswamy Temple">
+            <h3>🏛️ Padmanabhaswamy Temple</h3>
+        </div>
+        
+        <div class="destination" onclick="window.location.href='varakala.html'">
+            <img src="https://www.holidify.com/images/compressed/5077.jpg" alt="Varkala">
+            <h3>🏖️ Varkala</h3>
+        </div>
+        
+        <div class="destination" onclick="window.location.href='thekkady boat.html'">
+            <img src="https://i.ytimg.com/vi/cfhXzj7jLAI/maxresdefault.jpg" alt="Thekkady Boat">
+            <h3>⛵ Thekkady Boat Route</h3>
+        </div>
+        
+        <div class="destination" onclick="window.location.href='thommankuthu.html'">
+            <img src="https://media-cdn.tripadvisor.com/media/photo-s/07/f9/fe/37/thommankuthu-falls.jpg" alt="Thommankuthu Waterfall">
+            <h3>💦 Thommankuthu Waterfall</h3>
+        </div>
+        
+        <div class="destination" onclick="window.location.href='national park.html'">
+            <img src="https://www.ourmunnartrip.com/upload_pic/destinations/gallery/thumb/eravikulam-national-park-nilagiritar-munnar.webp" alt="Eravikulam National Park">
+            <h3>🦌 Eravikulam National Park</h3>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="index1.html" class="back-button">← Back to Home</a>
+    </div>
+
     <script>
         function redirectTo(url) {
             window.location.href = url;
         }
     </script>
-
-<header>
-    <h1>Explore Famous Places in KERALA</h1>
-</header>
-
-<div class="search-container">
-    <input type="text" placeholder="Search for transportation options...">
-    <button type="button">Search</button>
-</div>
-<div class="destinations">
-    <div class="destination">
-        <img src="https://tripnstay.com/wp-content/uploads/2019/02/Kannan-Devan-Hills.jpg" onclick="redirectTo('munnar.html')">
-        <h3 style="color:white">MUNNAR</h3>
-    </div>
-    <div class="destination">
-        <img src="https://pyt-blogs.imgix.net/2020/07/abhishek-prasad-ii0oWs5abCo-unsplash-scaled.jpg?auto=format&ixlib=php-3.3.0"onclick="redirectTo('allipery.html')">
-        <h3 style="color:white">ALLEPPEY</h3>
-    </div>
-    <div class="destination">
-        <img src="https://th.bing.com/th/id/OIP.XcMGek2eCNXOAUvROlnYYAHaEK?rs=1&pid=ImgDetMain" onclick="redirectTo('sabarimala.html')">
-        <h3 style="color:white">SABARIMALA</h3>
-    </div>
-    <div class="destination">
-        <img src="https://static.toiimg.com/photo/48251977/.jpg" onclick="redirectTo('kochi.html')">
-        <h3 style="color:white">KOCHI</h3>
-    </div>
-    <div class="destination">
-        <img src="https://www.nativeplanet.com/img/2016/08/3vadakkunnathan-26-1472194050.jpg" onclick="redirectTo('tirssur.html')">
-        <h3 style="color:white">THRISSUR</h3>
-    </div>
-    <div class="destination">
-        <img src="https://1.bp.blogspot.com/-H8WQZjCV1i0/YBKhpBXqXPI/AAAAAAAADxE/XsdqDZfaNc0q7v3UZ2K_3bNtP0v66nmCACLcBGAsYHQ/s1024/padma.jpg" onclick="redirectTo('padmanabaswami.html')">
-        <h3 style="color:white">padmanabhaswamy temple</h3>
-    </div>
-    <div class="destination">
-        <img src="https://www.holidify.com/images/compressed/5077.jpg" onclick="redirectTo('varakala.html')">
-        <h3 style="color:white">VARKALA</h3>
-    </div>
-    <div class="destination">
-        <img src="https://i.ytimg.com/vi/cfhXzj7jLAI/maxresdefault.jpg" onclick="redirectTo('thekkady boat.html')">
-        <h3 style="color:white">THEKKADY BOAT ROAT</h3>
-    </div>
-    <div class="destination">
-        <img src="https://media-cdn.tripadvisor.com/media/photo-s/07/f9/fe/37/thommankuthu-falls.jpg" onclick="redirectTo('thommankuthu.html')">
-        <h3 style="color:white">Thommankuthu Waterfall in India</h3>
-    </div>
-    <div class="destination">
-        <img src="https://www.ourmunnartrip.com/upload_pic/destinations/gallery/thumb/eravikulam-national-park-nilagiritar-munnar.webp" onclick="redirectTo('national park.html')">
-        <h3 style="color:white">Eravikulam National Park</h3>
-    </div>
+</body>
+</html>
