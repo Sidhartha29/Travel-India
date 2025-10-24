@@ -3,56 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIVER GODAVARI</title>
+    <title>River Godavari - Travel India</title>
     <style>
-        body {
-            font-family: 'Verdana', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #3498db; /* Serene blue representing the vastness of the river */
-            color: #ecf0f1;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://www.solitarytraveller.com/wp-content/uploads/2020/11/solo_travelling_banner.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            color: white;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            font-weight: 700;
             text-align: center;
         }
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            background: #2980b9; /* Deeper blue shade to reflect the depth of the river */
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-        }
+
         .image-container {
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
             border-radius: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
+
         img {
             width: 100%;
-            max-height: 400px;
+            max-height: 450px;
             object-fit: cover;
             border-radius: 12px;
+            transition: transform 0.3s ease;
         }
-        h1 {
-            color: #f1c40f; /* Golden hue representing the cultural significance of the river */
-            font-size: 28px;
-            margin-bottom: 20px;
+
+        .image-container:hover img {
+            transform: scale(1.05);
         }
+
         p {
             text-align: justify;
             line-height: 1.8;
-            font-size: 16px;
+            font-size: 1.1rem;
+            color: #555;
             margin-bottom: 20px;
         }
-        
-        /* Map Styling */
+
         .map-container {
-            margin-top: 20px;
+            margin-top: 30px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e1e5e9;
         }
 
         .map-container iframe {
@@ -60,21 +117,86 @@
             height: 400px;
             border: none;
         }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .map-container iframe {
+                height: 300px;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="logo-text">TravelIndia</div>
+        <div class="tagline">Discover Incredible India</div>
+    </div>
+
     <div class="container">
-        <h1>River Godavari</h1>
+        <h1>🌊 River Godavari - Dakshina Ganga</h1>
+        
         <div class="image-container">
             <img src="https://wallpapercave.com/wp/wp8705605.jpg" alt="Godavari River at Rajahmundry">
         </div>
+        
         <p>The Godavari is the second-longest river in India after the Ganges, flowing through central and southern India. It originates from Trimbak in Maharashtra and traverses several states before emptying into the Bay of Bengal.</p>
+        
         <p>The river is often referred to as the 'Dakshina Ganga' (Ganges of the South) due to its immense cultural and religious significance. It supports agriculture, hydroelectric projects, and provides water to millions of people.</p>
-        <p>Famous attractions along the Godavari include Rajahmundry’s historic bridges, the scenic Papikondalu hills, and the ancient temples along its banks, making it a lifeline for both nature and spirituality.</p>
-
-        <!-- Map Container -->
+        
+        <p>Famous attractions along the Godavari include Rajahmundry's historic bridges, the scenic Papikondalu hills, and the ancient temples along its banks, making it a lifeline for both nature and spirituality.</p>
+        
         <div class="map-container">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.885455325059!2d81.78214151513052!3d17.00746808817204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e6b36452417d%3A0x5f9abf56a11505da!2sGodavari%20River%2C%20Rajahmundry!5e0!3m2!1sen!2sin!4v1685055152492!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index1.html" class="back-button">← Back to Home</a>
         </div>
     </div>
 </body>
