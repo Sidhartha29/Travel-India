@@ -3,69 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMARAVATHI</title>
+    <title>Amaravathi - Travel India</title>
     <style>
-        body {
-            font-family: 'Verdana', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #e0f7fa;
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://www.solitarytraveller.com/wp-content/uploads/2020/11/solo_travelling_banner.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            color: white;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            font-weight: 700;
             text-align: center;
         }
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-        }
+
         img {
             width: 100%;
             height: auto;
+            max-height: 450px;
+            object-fit: cover;
             border-radius: 12px;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
-        h1 {
-            color: #00796b;
-            font-size: 28px;
+
+        img:hover {
+            transform: scale(1.02);
         }
+
         p {
             text-align: justify;
             line-height: 1.8;
-            font-size: 16px;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
         }
-        /* Map Section */
+
         .map-container {
-            margin-top: 20px;
+            margin-top: 30px;
             width: 100%;
-            height: 300px;
+            height: 350px;
             border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e1e5e9;
         }
+
         iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .map-container {
+                height: 250px;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Amaravathi</h1>
-        <img src="https://thebetterandhra.com/wp-content/uploads/2023/01/Amaravati-only-capital-of-Andhra-Pradesh.jpeg" alt="Amaravathi Buddha Statue">
-        <p>It is situated in Guntur district along the right bank of the Krishna River and southwest of Vijayawada. The city is named after the nearby historic site of Amaravathi, which was once the capital of the Satavahana dynasty around two millennia ago.</p>
-        <p>The city lies in Andhra Pradesh Capital Region. The city is an urban notified area. Urban development and planning activities are undertaken by the Amaravati Development Corporation Limited and Andhra Pradesh Capital Region Development Authority (APCRDA). The APCRDA has jurisdiction over the city and the conurbation covering Andhra Pradesh Capital Region.</p>
-        <p>The city is spread over an area of 217.23 km² (83.87 sq mi), and comprises villages (including some hamlets) from three mandals viz., Mangalagiri, Thullur and Tadepalli. The seed capital is spread over an area of 16.94 km² (6.54 sq mi).</p>
+    <div class="header">
+        <div class="logo-text">TravelIndia</div>
+        <div class="tagline">Discover Incredible India</div>
+    </div>
 
-        <!-- Map Section -->
+    <div class="container">
+        <h1>🏛️ Amaravathi</h1>
+        
+        <img src="https://thebetterandhra.com/wp-content/uploads/2023/01/Amaravati-only-capital-of-Andhra-Pradesh.jpeg" alt="Amaravathi Buddha Statue">
+        
+        <p>It is situated in Guntur district along the right bank of the Krishna River and southwest of Vijayawada. The city is named after the nearby historic site of Amaravathi, which was once the capital of the Satavahana dynasty around two millennia ago.</p>
+        
+        <p>The city lies in Andhra Pradesh Capital Region. The city is an urban notified area. Urban development and planning activities are undertaken by the Amaravati Development Corporation Limited and Andhra Pradesh Capital Region Development Authority (APCRDA). The APCRDA has jurisdiction over the city and the conurbation covering Andhra Pradesh Capital Region.</p>
+        
+        <p>The city is spread over an area of 217.23 km² (83.87 sq mi), and comprises villages (including some hamlets) from three mandals viz., Mangalagiri, Thullur and Tadepalli. The seed capital is spread over an area of 16.94 km² (6.54 sq mi).</p>
+        
         <div class="map-container">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.329640877534!2d80.50336541488272!3d16.573665388532796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35f2c041b5f24d%3A0x8e3c6d5aa08629ed!2sAmaravati%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1618315573185!5m2!1sen!2sin" 
                 allowfullscreen 
                 loading="lazy">
             </iframe>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index1.html" class="back-button">← Back to Home</a>
         </div>
     </div>
 </body>
