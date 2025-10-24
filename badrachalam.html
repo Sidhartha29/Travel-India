@@ -3,91 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BHADRACHALAM</title>
+    <title>Bhadrachalam - Travel India</title>
     <style>
-        body {
-            font-family: 'Verdana', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #4B0082; /* Deep purple representing spirituality */
-            color: #f4f4f4;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://www.solitarytraveller.com/wp-content/uploads/2020/11/solo_travelling_banner.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            color: white;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            font-weight: 700;
             text-align: center;
         }
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            background: #6A0DAD; /* Rich violet signifying divinity */
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column; /* Changed to column direction */
-            justify-content: center; /* Centers content horizontally */
-            align-items: center; /* Centers content vertically */
-        }
+
         .content {
-            text-align: left;
-            margin-bottom: 30px; /* Space between content and map */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
         .image-container {
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
             border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
+
         img {
             width: 100%;
-            max-height: 400px;
+            max-height: 450px;
             object-fit: cover;
             border-radius: 12px;
+            transition: transform 0.3s ease;
         }
-        h1 {
-            color: #FFD700; /* Golden hue symbolizing the grandeur of Sri Rama Temple */
-            font-size: 28px;
+
+        .image-container:hover img {
+            transform: scale(1.05);
         }
+
         p {
             text-align: justify;
             line-height: 1.8;
-            font-size: 16px;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+            width: 100%;
         }
-        /* Map Styling */
+
         .map-container {
             width: 100%;
-            max-width: 800px; /* Reduced map width */
-            height: 300px; /* Reduced map height */
-            margin-top: 20px;
+            max-width: 900px;
+            height: 350px;
+            margin-top: 30px;
             border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e1e5e9;
         }
+
         iframe {
             width: 100%;
             height: 100%;
             border: none;
             border-radius: 12px;
         }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .map-container {
+                height: 250px;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="logo-text">TravelIndia</div>
+        <div class="tagline">Discover Incredible India</div>
+    </div>
+
     <div class="container">
-        <!-- Content Section -->
+        <h1>🛕 Bhadrachalam</h1>
+        
         <div class="content">
-            <h1>Bhadrachalam</h1>
             <div class="image-container">
                 <img src="https://www.holidify.com/images/bgImages/BHADRACHALAM.jpg" alt="Bhadrachalam Temple">
             </div>
+            
             <p>Bhadrachalam, a prominent pilgrimage site in Telangana, is known for the famous Sri Sita Ramachandra Swamy Temple, dedicated to Lord Rama.</p>
+            
             <p>Situated on the banks of the Godavari River, Bhadrachalam holds immense religious significance and is deeply connected to the Ramayana.</p>
+            
             <p>The town is a spiritual retreat, attracting devotees and travelers seeking peace, devotion, and divine blessings.</p>
+            
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3837.1085604020084!2d80.88378921536296!3d17.6680519879057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a34230a16f9e6d5%3A0xa26c7313b07d5e36!2sBhadrachalam%2C%20Telangana%20507627!5e0!3m2!1sen!2sin!4v1618316003737!5m2!1sen!2sin" 
+                    allowfullscreen 
+                    loading="lazy">
+                </iframe>
+            </div>
         </div>
 
-        <!-- Map Section -->
-        <div class="map-container">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3837.1085604020084!2d80.88378921536296!3d17.6680519879057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a34230a16f9e6d5%3A0xa26c7313b07d5e36!2sBhadrachalam%2C%20Telangana%20507627!5e0!3m2!1sen!2sin!4v1618316003737!5m2!1sen!2sin" 
-                allowfullscreen 
-                loading="lazy">
-            </iframe>
+        <div style="text-align: center;">
+            <a href="index1.html" class="back-button">← Back to Home</a>
         </div>
     </div>
 </body>
