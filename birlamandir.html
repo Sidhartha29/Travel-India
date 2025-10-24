@@ -3,97 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birla Mandir, Hyderabad</title>
+    <title>Birla Mandir, Hyderabad - Travel India</title>
     <style>
-        body {
-            font-family: 'Verdana', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #f4f4f9, #f1f1f1); /* Soft white and gold tones */
-            color: #333333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://www.solitarytraveller.com/wp-content/uploads/2020/11/solo_travelling_banner.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            color: white;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 40px;
+            margin-bottom: 20px;
+            font-weight: 700;
             text-align: center;
         }
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            background: rgba(255, 255, 255, 0.9); /* Light transparent effect */
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-        }
+
         .content {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
+            align-items: flex-start;
+            gap: 30px;
+            padding: 0 40px 40px 40px;
         }
+
         .text-section {
             flex: 1;
             min-width: 300px;
-            text-align: left;
-            padding: 15px;
         }
+
+        .text-section p {
+            text-align: justify;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .text-section p strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+
         .image-section {
             flex: 1;
             min-width: 300px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
         }
+
         img {
             width: 100%;
             border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             object-fit: cover;
+            transition: transform 0.3s ease;
         }
-        h1 {
-            color: #FFD700; /* Golden hue for the spiritual significance */
-            font-size: 32px;
-            text-shadow: 2px 2px 6px rgba(255, 215, 0, 0.6); /* Glowing golden effect */
+
+        img:hover {
+            transform: scale(1.02);
         }
-        p {
-            text-align: justify;
-            line-height: 1.8;
-            font-size: 18px;
-            color: #333333; /* Elegant contrast for readability */
-        }
-        /* Map section styling */
+
         .map-container {
-            margin-top: 30px;
-            width: 100%;
+            margin: 0 40px 40px 40px;
+            width: calc(100% - 80px);
             height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e1e5e9;
         }
+
         iframe {
             width: 100%;
             height: 100%;
             border: none;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 0 40px 40px 40px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
             border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                padding: 0 20px 20px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin: 30px 20px 20px 20px;
+            }
+
+            .map-container {
+                margin: 0 20px 20px 20px;
+                width: calc(100% - 40px);
+                height: 300px;
+            }
+
+            .back-button {
+                margin: 0 20px 30px 20px;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="logo-text">TravelIndia</div>
+        <div class="tagline">Discover Incredible India</div>
+    </div>
+
     <div class="container">
-        <h1>Birla Mandir, Hyderabad</h1>
+        <h1>🛕 Birla Mandir, Hyderabad</h1>
+        
         <div class="content">
             <div class="text-section">
                 <p><strong>Birla Mandir</strong> in Hyderabad is a beautiful temple dedicated to <strong>Lord Venkateshwara</strong>. Situated atop a hill, the temple is known for its splendid <strong>architecture</strong>, which is built in a mix of <strong>South Indian and North Indian styles</strong>. It offers stunning views of the city, especially during sunrise and sunset.</p>
+                
                 <p>The temple is crafted using <strong>white marble</strong>, and the main deity, <strong>Lord Venkateshwara</strong>, is a magnificent idol. The serene atmosphere makes it a popular place for both worship and sightseeing.</p>
+                
                 <p>Visitors can enjoy the <strong>peaceful environment</strong>, the magnificent <strong>intricate carvings</strong>, and the <strong>panoramic view</strong> of the city from the temple. The temple is a perfect place for those seeking <strong>spiritual solace</strong> and a glimpse into the grandeur of Indian architecture.</p>
             </div>
+            
             <div class="image-section">
                 <img src="https://th.bing.com/th/id/R.a486b26a336d61e469afeabebc0feabc?rik=y4bS95E3KVh6dA&riu=http%3a%2f%2fwww.hyderabadtourism.travel%2fimages%2fvisiting-places%2fheaders%2fbirla-mandir-hyderabad-tourism-entryfee-timings-package-tour.jpg&ehk=1LXMoAxMCLBwVk1wvoaBoaW2jAgZ3dnx67RuwH%2fJYzM%3d&risl=&pid=ImgRaw&r=0" alt="Birla Mandir Temple">
             </div>
         </div>
 
-        <!-- Map Section -->
         <div class="map-container">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.087618452486!2d78.47457331528895!3d17.420391788100297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99b0e73a3d57%3A0xd4059fe25ad1faed!2sBirla%20Mandir%2C%20Hyderabad!5e0!3m2!1sen!2sin!4v1678894857342!5m2!1sen!2sin" 
                 allowfullscreen 
                 loading="lazy">
             </iframe>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index1.html" class="back-button">← Back to Home</a>
         </div>
     </div>
 </body>
