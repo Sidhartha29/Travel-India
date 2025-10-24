@@ -3,141 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charminar - Hyderabad</title>
+    <title>Charminar - Hyderabad - Travel India</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://www.solitarytraveller.com/wp-content/uploads/2020/11/solo_travelling_banner.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            color: white;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
         .container {
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
+            margin: 0 auto;
+            padding: 40px;
             background-color: #fff;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border-radius: 20px;
+            animation: slideInUp 0.6s ease forwards;
         }
+
         header {
             text-align: center;
             margin-bottom: 30px;
         }
+
         header h1 {
             font-size: 2.5rem;
-            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
+            font-weight: 700;
         }
+
         header p {
             font-size: 1.1rem;
-            color: #7f8c8d;
+            color: #666;
         }
+
         img {
             width: 100%;
             height: auto;
-            border-radius: 10px;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.02);
+        }
+
+        .main-content {
             margin-bottom: 30px;
         }
-        .main-content, .guide-details, .map-container {
-            margin-bottom: 30px;
+
+        .main-content p {
+            text-align: justify;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
         }
+
         .content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 30px;
+            margin-top: 30px;
         }
-        .content .main-content {
-            grid-column: span 2;
+
+        .guide-details {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 2px solid #e1e5e9;
         }
-        .content .guide-details {
-            background-color: #ecf0f1;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+
         .guide-details h5 {
-            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             font-size: 1.4rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-weight: 700;
         }
+
         .guide-details ul {
             list-style-type: none;
             padding-left: 0;
         }
+
         .guide-details ul li {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            color: #34495e;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            color: #555;
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
         }
+
+        .guide-details ul li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .guide-details ul li strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .map-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-section h3 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .map-container {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e1e5e9;
+            min-height: 400px;
+        }
+
         .map-container iframe {
             width: 100%;
-            height: 450px;
+            height: 100%;
+            min-height: 400px;
             border: none;
-            border-radius: 10px;
         }
+
         footer {
             text-align: center;
             font-size: 1.1rem;
-            color: #7f8c8d;
+            color: #666;
             margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e1e5e9;
         }
 
-        /* Responsive Design */
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
         @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
             .content {
                 grid-template-columns: 1fr;
             }
-            .content .main-content {
-                grid-column: span 1;
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
+    <div class="page-header">
+        <div class="logo-text">TravelIndia</div>
+        <div class="tagline">Discover Incredible India</div>
+    </div>
 
     <div class="container">
-        <!-- Header Section -->
         <header>
-            <h1>Charminar - Hyderabad</h1>
+            <h1>🕌 Charminar - Hyderabad</h1>
             <p>Explore the grandeur and historical significance of this iconic landmark</p>
         </header>
 
-        <!-- Main Image & Content Section -->
         <div class="main-content">
             <img src="https://files.structurae.net/files/photos/1/naveen-durgam_ar_09.jpg" alt="Charminar">
-            <p>The Charminar (lit. 'four minarets') is a monument located in Hyderabad, Telangana, India. Constructed in 1591, the landmark is a symbol of Hyderabad and officially incorporated in the emblem of Telangana. The Charminar's long history includes the existence of a mosque on its top floor for more than 425 years.</p>
+            <p>The Charminar (lit. 'four minarets') is a monument located in Hyderabad, Telangana, India. Constructed in 1591, the landmark is a symbol of Hyderabad and officially incorporated in the emblem of Telangana. The Charminar's long history includes the existence of a mosque on its top floor for more than 425 years.</p>
             <p>While both historically and religiously significant, it is also known for its popular and busy local markets surrounding the structure and has become one of the most frequented tourist attractions in Hyderabad. Charminar is also a site of numerous festival celebrations, such as Eid-ul-adha and Eid al-Fitr, as it is adjacent to the city's main mosque, the Makkah Masjid.</p>
             <p>The Charminar is situated on the east bank of the Musi River. To the west lies the Laad Bazaar, and to the southwest, the richly ornamented Makkah Masjid. It is listed as an archaeological and architectural treasure on the official list of monuments prepared by the Archaeological Survey of India.</p>
         </div>
 
-        <!-- Content Grid Section -->
         <div class="content">
-            <!-- Guide Details Section -->
             <div class="guide-details">
-                <h5>Guide Details</h5>
+                <h5>📋 Guide Details</h5>
                 <ul>
-                    <li><strong>Name:</strong> Imran Khan</li>
+                    <li><strong>Guide Name:</strong> Imran Khan</li>
                     <li><strong>Location:</strong> Charminar, Hyderabad, Telangana</li>
                     <li><strong>Opening Hours:</strong> 9:30 AM - 5:30 PM</li>
                     <li><strong>Contact Info:</strong> 987-654-3210</li>
                     <li><strong>Best Time to Visit:</strong> During the evening or festivals like Eid</li>
-                    <li><strong>Guided Tours:</strong> Available in multiple languages, booking recommended</li>
+                    <li><strong>Guided Tours:</strong> Available in multiple languages</li>
+                    <li><strong>Booking:</strong> Advance booking recommended</li>
                     <li><strong>Nearby Attractions:</strong> Laad Bazaar, Makkah Masjid, Chowmohalla Palace</li>
                 </ul>
             </div>
 
-            <!-- Map Section -->
-            <div class="map-container">
-                <h3>Find Charminar on the Map</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.026788163898!2d78.47472061427724!3d17.36156308810723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9371cd77406f%3A0x45d3929071cded0b!2sCharminar!5e0!3m2!1sen!2sin!4v1679645708460!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+            <div class="map-section">
+                <h3>📍 Find Charminar on the Map</h3>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.026788163898!2d78.47472061427724!3d17.36156308810723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9371cd77406f%3A0x45d3929071cded0b!2sCharminar!5e0!3m2!1sen!2sin!4v1679645708460!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                </div>
             </div>
         </div>
 
-        <!-- Footer Section -->
         <footer>
-            <p>Experience the timeless beauty of Charminar, Hyderabad!</p>
+            <p>Experience the timeless beauty of Charminar, Hyderabad! ✨</p>
+            <a href="index1.html" class="back-button">← Back to Home</a>
         </footer>
     </div>
-
 </body>
 </html>
