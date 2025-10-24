@@ -3,131 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sri Venkateswara Temple</title>
+    <title>Sri Venkateswara Temple - Travel India</title>
     <style>
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fafafa;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://www.solitarytraveller.com/wp-content/uploads/2020/11/solo_travelling_banner.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            color: white;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
         header {
-            background-color: #2D3E50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fff;
             text-align: center;
-            padding: 4rem 2rem;
-            width: 100%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 60px 20px;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            animation: slideInUp 0.6s ease forwards;
         }
 
         header h1 {
-            font-size: 3.5rem;
-            font-weight: 600;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
         header p {
             font-size: 1.2rem;
-            margin-top: 10px;
             font-style: italic;
+            opacity: 0.9;
         }
 
-        
         .container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            padding: 30px;
+            padding: 40px;
             max-width: 1200px;
-            width: 100%;
-            margin-top: 40px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
-        
         .main-content {
             flex: 1 1 60%;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            padding: 0 20px 0 0;
+        }
+
+        .main-content h2, .main-content h3, .main-content h4 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 30px 0 15px 0;
+            font-weight: 700;
         }
 
         .main-content h2 {
             font-size: 2rem;
-            color: #2D3E50;
-            margin-bottom: 20px;
+        }
+
+        .main-content h3 {
+            font-size: 1.6rem;
+        }
+
+        .main-content h4 {
+            font-size: 1.4rem;
         }
 
         .main-content p {
             font-size: 1.1rem;
-            line-height: 1.6;
+            line-height: 1.8;
             color: #555;
             margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
         .main-content img {
             width: 100%;
-            height: 200px;
-            border-radius: 8px;
-            margin-top: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            height: auto;
+            max-height: 400px;
+            border-radius: 12px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-        /* Guide Details Section */
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
         .guide-details {
             flex: 1 1 35%;
-            background-color: #fff;
+            background: #f8f9fa;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 2px solid #e1e5e9;
+            height: fit-content;
         }
 
         .guide-details h3 {
-            font-size: 1.8rem;
-            color: #2D3E50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.6rem;
             margin-bottom: 20px;
+            font-weight: 700;
         }
 
         .guide-details ul {
             list-style-type: none;
             padding: 0;
-            font-size: 1.1rem;
-            color: #555;
         }
 
         .guide-details li {
-            margin: 10px 0;
+            font-size: 1rem;
+            margin: 12px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            color: #555;
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .guide-details li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
         }
 
         .guide-details li strong {
-            font-weight: bold;
-            color: #333;
+            color: #667eea;
+            font-weight: 600;
         }
 
-        /* Map Section */
+        .map-section {
+            width: 100%;
+            margin-top: 40px;
+        }
+
         .map-container {
-            width: 50%;
-            height: 250px;
-            border-radius: 10px;
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            margin-top: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e1e5e9;
         }
 
         .map-container iframe {
@@ -136,54 +207,90 @@
             border: none;
         }
 
-        /* Footer Styling */
         footer {
-            background-color: #2D3E50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fff;
             text-align: center;
-            padding: 1.5rem;
-            width: 100%;
-            font-size: 1.1rem;
+            padding: 30px;
             margin-top: 40px;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
-        /* Responsive Design */
+        .back-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .container {
                 flex-direction: column;
-                padding: 20px;
+                padding: 30px 20px;
             }
 
             .main-content, .guide-details {
                 flex: 1 1 100%;
+                padding: 0;
                 margin-bottom: 20px;
             }
 
             .map-container {
                 height: 300px;
             }
+        }
 
-            footer {
-                font-size: 1rem;
-                padding: 1rem;
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
+    <div class="page-header">
+        <div class="logo-text">TravelIndia</div>
+        <div class="tagline">Discover Incredible India</div>
+    </div>
 
     <header>
-        <h1>Sri Venkateswara Temple - Dwaraka Tirumala</h1>
+        <h1>🛕 Sri Venkateswara Temple - Dwaraka Tirumala</h1>
         <p>Your spiritual journey awaits</p>
     </header>
 
     <div class="container">
-        
         <div class="main-content">
             <h2>About Sri Venkateswara Temple</h2>
             <p>Sri Venkateswara Temple, located in Dwaraka Tirumala in Andhra Pradesh, is dedicated to Lord Venkateswara, an incarnation of Lord Vishnu. The temple is often referred to as 'Chinna Tirupati' due to its resemblance to the famous Tirupati temple. It attracts millions of pilgrims every year, making it a major spiritual hub.</p>
@@ -199,9 +306,8 @@
             <p>Known for its unique idol placement and serene surroundings, the temple offers a peaceful atmosphere for devotees seeking spiritual solace. The temple's architecture, which includes the vimana, mantapa, and gopura, enhances its historical and cultural significance.</p>
         </div>
 
-        
         <div class="guide-details">
-            <h3>Guide Details</h3>
+            <h3>📋 Guide Details</h3>
             <ul>
                 <li><strong>Guide Name:</strong> Hari Prasad</li>
                 <li><strong>Location:</strong> Dwaraka Tirumala, Eluru, Andhra Pradesh</li>
@@ -213,16 +319,15 @@
         </div>
     </div>
 
-    
-    <div class="container">
+    <div class="container map-section">
         <div class="map-container">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.104273734409!2d81.537632014735!3d16.878529049263446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a41b44f02d36db1%3A0x3f21cd54fd1c7b7d!2sSri%20Venkateswara%20Temple%2C%20Dwaraka%20Tirumala!5e0!3m2!1sen!2sin!4v1685046746453!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 
     <footer>
-        <p>Visit Sri Venkateswara Temple for a divine experience!</p>
+        <p>Visit Sri Venkateswara Temple for a divine experience! ✨</p>
+        <a href="index1.html" class="back-button">← Back to Home</a>
     </footer>
-
 </body>
 </html>
