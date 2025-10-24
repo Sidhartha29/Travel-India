@@ -3,76 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Train Booking</title>
+    <title>Train Booking - Travel India</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: gray; 
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-        }
-        .booking-container {
-            background: paleturquoise;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            width: 600px;
+            position: relative;
         }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://www.solitarytraveller.com/wp-content/uploads/2020/11/solo_travelling_banner.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .booking-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 650px;
+            animation: slideInUp 0.6s ease;
+        }
+
         .booking-container h2 {
             text-align: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            font-weight: 700;
         }
+
         .form-group {
             margin-bottom: 25px;
         }
+
         .form-group label {
             display: block;
             margin-bottom: 10px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
         }
+
         .form-group input, .form-group select {
             width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
         }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
         .submit-btn {
             width: 100%;
-            padding: 10px;
-            background-color: blueviolet;
-            color: black;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+
         .submit-btn:hover {
-            background-color: yellow;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
+
         .qr-code {
-            margin-top: 20px;
+            margin-top: 30px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px solid #e1e5e9;
         }
+
+        #qrcode {
+            margin-bottom: 15px;
+        }
+
         #pay-now {
             display: none;
-            margin-top: 10px;
-            background-color: blue;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
-            padding: 10px;
-            border-radius: 10px;
+            padding: 16px;
+            border-radius: 12px;
             cursor: pointer;
             width: 100%;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+
+        #pay-now:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+        }
+
         #booking-complete {
             display: none;
-            margin-top: 15px;
-            color: green;
-            font-weight: bold;
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 16px;
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo .tagline {
+            color: #666;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .booking-container {
+                padding: 30px 20px;
+            }
+
+            .booking-container h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
+</head>
+<body>
+    <div class="booking-container">
+        <div class="logo">
+            <div class="logo-text">🚂 TravelIndia</div>
+            <div class="tagline">Train Booking System</div>
+        </div>
+
+        <h2>Train Booking</h2>
+        <form onsubmit="bookTrain(event)">
+            <div class="form-group">
+                <label for="departure">Departure Station</label>
+                <input type="text" id="departure" name="departure" placeholder="Enter departure station" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination Station</label>
+                <input type="text" id="destination" name="destination" placeholder="Enter destination station" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Travel Date</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="class">Class</label>
+                <select id="class" name="class">
+                    <option value="economy">General - ₹50 per passenger</option>
+                    <option value="business">Sleeper - ₹100 per passenger</option>
+                    <option value="first">AC Sleeper - ₹200 per passenger</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="passengers">Number of Passengers</label>
+                <input type="number" id="passengers" name="passengers" min="1" placeholder="Enter number of passengers" required>
+            </div>
+            <button type="submit" class="submit-btn">Book Now</button>
+        </form>
+
+        <div id="qrcode" class="qr-code"></div>
+
+        <button id="pay-now" onclick="completeBooking()">Complete Booking</button>
+
+        <div id="booking-complete">✅ Your booking is successful!</div>
+    </div>
+
     <script>
         function bookTrain(event) {
             event.preventDefault(); 
@@ -83,7 +251,6 @@
             const passengers = parseInt(document.getElementById("passengers").value);
             const trainClass = document.getElementById("class").value;
 
-           
             let baseFare;
             if (trainClass === "economy") {
                 baseFare = 50;
@@ -93,7 +260,6 @@
                 baseFare = 200;
             }
 
-         
             const amount = baseFare * passengers;
 
             if (isNaN(amount) || amount <= 0) {
@@ -102,63 +268,26 @@
             }
 
             const qrCodeContainer = document.getElementById('qrcode');
-            qrCodeContainer.innerHTML = ''; 
+            qrCodeContainer.innerHTML = '<p style="color: #667eea; font-weight: 600; margin-bottom: 15px;">Scan QR Code to Pay ₹' + amount + '</p>'; 
             new QRCode(qrCodeContainer, {
-                text: `upi://pay?pa=7702496143@ybl&pn=YourName&am=${amount}&cu=INR`,
+                text: `upi://pay?pa=7702496143@ybl&pn=TravelIndia&am=${amount}&cu=INR`,
                 width: 200,
                 height: 200
             });
 
             alert(`QR code generated for ₹${amount}! Scan to pay.`);
 
-            
             document.getElementById('pay-now').style.display = 'block';
         }
 
         function completeBooking() {
             document.getElementById('booking-complete').style.display = 'block';
+            document.getElementById('pay-now').style.display = 'none';
+            
+            setTimeout(() => {
+                window.location.href = 'index1.html';
+            }, 2000);
         }
     </script>
-</head>
-<body>
-    <div class="booking-container">
-        <h2>Train Booking</h2>
-        <form onsubmit="bookTrain(event)">
-            <div class="form-group">
-                <label for="departure">Departure Station</label>
-                <input type="text" id="departure" name="departure" required>
-            </div>
-            <div class="form-group">
-                <label for="destination">Destination Station</label>
-                <input type="text" id="destination" name="destination" required>
-            </div>
-            <div class="form-group">
-                <label for="date">Travel Date</label>
-                <input type="date" id="date" name="date" required>
-            </div>
-            <div class="form-group">
-                <label for="class">Class</label>
-                <select id="class" name="class">
-                    <option value="economy">genrral - ₹50 per passenger</option>
-                    <option value="business"> sleeper- ₹100 per passenger</option>
-                    <option value="first">ac sleeper - ₹200 per passenger</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="passengers">Number of Passengers</label>
-                <input type="number" id="passengers" name="passengers" min="1" required>
-            </div>
-            <button type="submit" class="submit-btn">book now</button>
-        </form>
-
-       
-        <div id="qrcode" class="qr-code"></div>
-
-        
-        <button id="pay-now" onclick="completeBooking()">complete booking</button>
-
-        
-        <div id="booking-complete"> your booking is successfull</div>
-    </div>
 </body>
 </html>
